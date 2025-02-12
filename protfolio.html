@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indrudge Panwar | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #ffffff;
+            text-align: center;
+        }
+        header {
+            background: #161b22;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        section {
+            padding: 50px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background: #161b22;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+        .projects {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .project {
+            background: #21262d;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            width: 40%;
+            transition: transform 0.3s;
+        }
+        .project:hover {
+            transform: scale(1.05);
+        }
+        .btn {
+            background-color: #58a6ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #1f6feb;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function toggleProjects() {
+            var projects = document.getElementById("projects-section");
+            if (projects.classList.contains("hidden")) {
+                projects.classList.remove("hidden");
+            } else {
+                projects.classList.add("hidden");
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>Indrudge Panwar - Code & Creativity</header>
+    
+    <section>
+        <div class="container">
+            <h1>Hey, I'm Indrudge 👋</h1>
+            <p>BCA Final Year | AI/ML Enthusiast | Full-Stack Developer</p>
+            <p>Transforming ideas into scalable solutions with code.</p>
+            <button class="btn" onclick="toggleProjects()">Show Projects</button>
+        </div>
+    </section>
+    
+    <section id="projects-section" class="hidden">
+        <div class="container">
+            <h2>Projects 🚀</h2>
+            <div class="projects">
+                <div class="project">
+                    <h3>AI-Powered Sticker Generator</h3>
+                    <p>Built a generative AI model for custom sticker design.</p>
+                    <a href="#">🔗 View Project</a>
+                </div>
+                <div class="project">
+                    <h3>Advanced Inventory Management System</h3>
+                    <p>Implemented ML-based demand forecasting.</p>
+                    <a href="#">🔗 View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2>Connect with Me 🤝</h2>
+            <p><a href="https://github.com/indrudgepanwar" target="_blank">GitHub</a> | <a href="#">LinkedIn</a> | <a href="#">Portfolio</a></p>
+        </div>
+    </section>
+</body>
+</html>
