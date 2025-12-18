@@ -77,9 +77,12 @@
     #bg-icons svg {
       position: absolute;
       width: 22px; height: 22px;
-      opacity: 0.12;
+      opacity: 0.15;
       animation: floatUp linear infinite;
-      filter: drop-shadow(0 0 6px rgba(0,255,213,.4));
+      fill: none;
+      stroke: #00ffd5;
+      stroke-width: 1.6;
+      filter: drop-shadow(0 0 6px rgba(0,255,213,.45));
     }
     @keyframes floatUp {
       from { transform: translateY(110vh) rotate(0deg); }
@@ -232,11 +235,11 @@
   for (let i = 0; i < 4; i++) {
     const geo = new THREE.SphereGeometry(1.6, 64, 64);
     const mat = new THREE.MeshStandardMaterial({
-      color: 0x0b1020,
-      emissive: 0x00aaff,
-      emissiveIntensity: 0.35,
+      color: 0x081020,
+      emissive: 0x00ffff,
+      emissiveIntensity: 0.45,
       metalness: 0.9,
-      roughness: 0.15
+      roughness: 0.12
     });
     const mesh = new THREE.Mesh(geo, mat);
     mesh.position.x = (i - 1.5) * 5.2;
@@ -244,6 +247,11 @@
     mesh.userData = { link: links[i] };
     baseY.push(0);
     scene.add(mesh);
+
+    // Neon glow light attached to orb
+    const glowLight = new THREE.PointLight(0x00ffff, 1.2, 6);
+    glowLight.position.set(0, 0, 0);
+    mesh.add(glowLight);
     spheres.push(mesh);
   }
 
@@ -276,7 +284,7 @@
     });
 
     if (intersects.length > 0) {
-      intersects[0].object.material.emissiveIntensity = 1.8;
+      intersects[0].object.material.emissiveIntensity = 2.4;
       intersects[0].object.scale.set(1.15, 1.15, 1.15);
       document.body.style.cursor = 'pointer';
     } else {
