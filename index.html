@@ -83,6 +83,7 @@
       stroke: #00ffd5;
       stroke-width: 1.6;
       filter: drop-shadow(0 0 6px rgba(0,255,213,.45));
+      pointer-events: none;
     }
     @keyframes floatUp {
       from { transform: translateY(110vh) rotate(0deg); }
@@ -208,7 +209,7 @@
     document.getElementById('bg-icons').appendChild(svg);
   }
 
-  /* ===== THREE.JS PROJECT ORBS (FIXED & WORKING) ===== */
+  /* ===== THREE.JS PROJECT ORBS (STABLE VERSION) ===== */
   const orbContainer = document.getElementById('orbs');
   orbContainer.innerHTML = '';
 
@@ -219,13 +220,11 @@
   renderer.setPixelRatio(window.devicePixelRatio);
   orbContainer.appendChild(renderer.domElement);
 
-  /* Lights */
   scene.add(new THREE.AmbientLight(0x00ffff, 0.6));
-  const mainLight = new THREE.PointLight(0x00ffff, 2.2, 50);
-  mainLight.position.set(0, 0, 10);
-  scene.add(mainLight);
+  const light = new THREE.PointLight(0x00ffff, 2, 40);
+  light.position.set(0, 0, 10);
+  scene.add(light);
 
-  /* Project Data */
   const projects = [
     { name: 'PlagRemover', link: 'https://github.com/Indrudge/plagremover' },
     { name: 'Major Project 1', link: 'https://github.com/Indrudge/Major1' },
@@ -233,96 +232,81 @@
     { name: 'Disaster Quiz', link: 'https://github.com/Indrudge/disasterquiz' }
   ];
 
-  const spheres = [];
+  const orbs = [];
   const labels = [];
 
-  /* Create Orbs */
   projects.forEach((proj, i) => {
-    const geometry = new THREE.CircleGeometry(1.8, 64);
+    const geometry = new THREE.CircleGeometry(1.7, 64);
     const material = new THREE.MeshStandardMaterial({
       color: 0x081020,
       emissive: 0x00ffff,
-      emissiveIntensity: 0.6,
-      metalness: 0.9,
-      roughness: 0.12
+      emissiveIntensity: 0.7,
+      metalness: 0.85,
+      roughness: 0.2
     });
 
     const orb = new THREE.Mesh(geometry, material);
-    orb.rotation.x = -Math.PI / 2; // face camera
-    orb.position.x = (i - 1.5) * 5.5;
+    orb.position.set((i - 1.5) * 5.5, 0, 0);
+    orb.rotation.x = -Math.PI / 2;
     orb.userData.link = proj.link;
     scene.add(orb);
-    spheres.push(orb);
+    orbs.push(orb);
 
-    /* Glow light */
-    const glow = new THREE.PointLight(0x00ffff, 1.6, 8);
-    orb.add(glow);
-
-    /* Text label */
     const canvas = document.createElement('canvas');
     canvas.width = 512;
     canvas.height = 128;
     const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 48px Inter';
+    ctx.font = 'bold 46px Inter';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#00ffff';
     ctx.shadowColor = '#00ffff';
     ctx.shadowBlur = 20;
-    ctx.fillText(proj.name, 256, 80);
+    ctx.fillText(proj.name, 256, 78);
 
     const texture = new THREE.CanvasTexture(canvas);
     const labelMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
     const label = new THREE.Sprite(labelMat);
-    label.position.set(orb.position.x, orb.position.y, 0);
-    label.center.set(0.5, 0.5);
     label.scale.set(4.5, 1.1, 1);
+    label.position.copy(orb.position);
     scene.add(label);
     labels.push(label);
   });
 
   camera.position.z = 10;
 
-  /* Interaction */
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
 
-  window.addEventListener('mousemove', (e) => {
+  renderer.domElement.addEventListener('mousemove', (e) => {
     const rect = renderer.domElement.getBoundingClientRect();
     mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
-    const hits = raycaster.intersectObjects(spheres);
+    const hits = raycaster.intersectObjects(orbs);
 
-    spheres.forEach(s => {
-      s.material.emissiveIntensity = 0.6;
-      s.scale.set(1,1,1);
-    });
+    orbs.forEach(o => o.material.emissiveIntensity = 0.7);
 
-    if (hits.length > 0) {
-      const o = hits[0].object;
-      o.material.emissiveIntensity = 1.6;
-      o.scale.set(1.15,1.15,1.15);
+    if (hits.length) {
+      hits[0].object.material.emissiveIntensity = 1.6;
       document.body.style.cursor = 'pointer';
     } else {
       document.body.style.cursor = 'default';
     }
   });
 
-  window.addEventListener('click', () => {
+  renderer.domElement.addEventListener('click', () => {
     raycaster.setFromCamera(mouse, camera);
-    const hits = raycaster.intersectObjects(spheres);
-    if (hits.length > 0) {
-      window.open(hits[0].object.userData.link, '_blank');
-    }
+    const hits = raycaster.intersectObjects(orbs);
+    if (hits.length) window.open(hits[0].object.userData.link, '_blank');
   });
 
   function animate() {
     requestAnimationFrame(animate);
-    spheres.forEach((s, i) => {
-      s.rotation.y += 0.006;
-      s.position.y = Math.sin(Date.now() * 0.002 + i) * 0.45;
-      labels[i].position.y = s.position.y;
+    orbs.forEach((o, i) => {
+      o.position.y = Math.sin(Date.now() * 0.002 + i) * 0.45;
+      labels[i].position.y = o.position.y;
+    });
     renderer.render(scene, camera);
   }
   animate();
