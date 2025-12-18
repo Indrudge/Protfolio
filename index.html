@@ -32,6 +32,14 @@
       animation: holoShift 6s linear infinite;
       text-shadow: 0 0 40px rgba(0,255,213,.35);
     }
+
+    .hero p {
+      margin-top: 18px;
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: rgba(229,231,235,0.75);
+      text-transform: uppercase;
+    }
     @keyframes holoShift {
       from { background-position: 0% 50%; }
       to { background-position: 200% 50%; }
@@ -111,13 +119,29 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav><div class="hero">
-  <h1>INDRUDGE PANWAR</h1>
+  <div>
+    <h1>INDRUDGE PANWAR</h1>
+    <p id="dynamic-text"></p>
+  </div>
 </div><section id="education">
   <h2>Education</h2>
   <div class="timeline">
-    <div class="event left"><span>2019</span><br>10th Standard</div>
-    <div class="event right"><span>2021</span><br>12th Standard</div>
-    <div class="event left"><span>2025</span><br>Graduation</div>
+    <div class="event left">
+      <span>2019</span><br>
+      <strong>10th Standard (ICSE)</strong><br>
+      Cambrian Hall School
+    </div>
+    <div class="event right">
+      <span>2021</span><br>
+      <strong>12th Standard (ICSE)</strong><br>
+      Cambrian Hall School
+    </div>
+    <div class="event left">
+      <span>2025</span><br>
+      <strong>Bachelor of Computer Applications (BCA)</strong><br>
+      Specialization: Artificial Intelligence & Machine Learning<br>
+      University of Petroleum and Energy Studies (UPES)
+    </div>
   </div>
 </section><section id="projects">
   <h2>Projects</h2>
@@ -180,20 +204,15 @@
 
   const spheres = [];
 const baseY = [];
-  for (let i = 0; i < 4; i++) {
-    const geo = new THREE.SphereGeometry(1, 64, 64);
-    const mat = new THREE.MeshStandardMaterial({
-      color: 0x7f00ff,
-      emissive: 0x00ffd5,
-      emissiveIntensity: 0.4,
-      metalness: 0.8,
-      roughness: 0.2
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.x = (i - 1.5) * 3;
-    mesh.position.y = 0;
-    baseY.push(0);
+const links = [
+  'https://github.com/Indrudge/project1',
+  'https://github.com/Indrudge/project2',
+  'https://github.com/Indrudge/project3',
+  'https://github.com/Indrudge/project4'
+];
+
     scene.add(mesh);
+    mesh.userData = { link: links[i] };
     spheres.push(mesh);
   }
 
@@ -207,6 +226,57 @@ const baseY = [];
     });
     renderer.render(scene, camera);
   }
+
+  /* ===== INTERACTION: HOVER + CLICK ===== */
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / 420) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(spheres);
+
+    spheres.forEach(s => s.material.emissiveIntensity = 0.35);
+
+    if (intersects.length > 0) {
+      intersects[0].object.material.emissiveIntensity = 1.2;
+      document.body.style.cursor = 'pointer';
+    } else {
+      document.body.style.cursor = 'default';
+    }
+  });
+
+  window.addEventListener('click', () => {
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(spheres);
+    if (intersects.length > 0) {
+      window.open(intersects[0].object.userData.link, '_blank');
+    }
+  });
+  }
   animate();
+
+  /* ===== DYNAMIC HERO TEXT ===== */
+  const roles = [
+    "AI SYSTEMS ENGINEER",
+    "BACKEND ARCHITECT",
+    "LINUX POWER USER",
+    "OPEN SOURCE BUILDER",
+    "THREE.JS ENTHUSIAST"
+  ];
+
+  let roleIndex = 0;
+  const el = document.getElementById('dynamic-text');
+
+  setInterval(() => {
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.textContent = roles[roleIndex];
+      el.style.opacity = 1;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }, 300);
+  }, 2200);
 </script></body>
 </html>
