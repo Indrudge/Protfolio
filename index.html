@@ -3,48 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<meta name="description" content="Indrudge Panwar – AI Systems Engineer, Backend Architect, Linux Power User">
+<meta name="keywords" content="Indrudge Panwar, AI Engineer, Backend Developer, Portfolio">
+<meta name="author" content="Indrudge Panwar">
+
+<!-- OpenGraph -->
+<meta property="og:title" content="Indrudge Panwar | Portfolio">
+<meta property="og:description" content="Building scalable AI-driven systems.">
+<meta property="og:type" content="website">
+
 <title>Indrudge Panwar | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --bg: #0d1117;
   --card: #161b22;
-  --accent: #58a6ff;
   --text: #c9d1d9;
   --muted: #8b949e;
+  --accent: #58a6ff;
 }
 
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+.light {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #57606a;
+  --accent: #0969da;
 }
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
+  transition: background .3s, color .3s;
 }
 
-/* ---------- NAVBAR ---------- */
+/* ---------- NAV ---------- */
 nav {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(13,17,23,0.85);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #21262d;
+  z-index: 100;
 }
 
 nav ul {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 25px;
+  list-style: none;
   padding: 15px;
   margin: 0;
-  list-style: none;
 }
 
 nav a {
@@ -53,103 +70,68 @@ nav a {
   font-weight: 500;
 }
 
-nav a:hover {
-  color: var(--accent);
-}
+nav a:hover { color: var(--accent); }
 
 /* ---------- HERO ---------- */
 header {
-  min-height: 90vh;
+  min-height: 95vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 
-.hero {
+.terminal {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
   max-width: 900px;
-  padding: 40px;
-  animation: fadeUp 1.2s ease forwards;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
 }
 
-.hero h1 {
-  font-size: 3rem;
-  background: linear-gradient(90deg, #58a6ff, #9d7cff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: var(--muted);
-}
-
-.hero span {
-  color: var(--accent);
-  font-weight: 600;
-}
+.prompt { color: var(--accent); }
 
 /* ---------- SECTIONS ---------- */
-section {
-  padding: 80px 20px;
-}
+section { padding: 80px 20px; }
+.container { max-width: 1100px; margin: auto; }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
-
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 40px;
-  text-align: center;
-}
+h2 { text-align: center; margin-bottom: 50px; }
 
 /* ---------- CARDS ---------- */
 .card {
   background: var(--card);
-  border-radius: 10px;
   padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.4);
+}
+
+/* ---------- STATS ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 2.2rem;
+  color: var(--accent);
 }
 
 /* ---------- SKILLS ---------- */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 20px;
-}
-
-.skill h4 {
-  margin-bottom: 8px;
-}
-
+.skill { margin-bottom: 15px; }
 .bar {
   background: #21262d;
   border-radius: 20px;
   overflow: hidden;
 }
-
 .bar span {
   display: block;
   height: 10px;
   background: var(--accent);
   width: 0;
   animation: fill 1.5s forwards;
-}
-
-/* ---------- EDUCATION ---------- */
-.timeline {
-  border-left: 3px solid var(--accent);
-  padding-left: 30px;
-}
-
-.timeline-item {
-  margin-bottom: 30px;
-}
-
-.timeline-item h4 {
-  margin: 0;
 }
 
 /* ---------- PROJECTS ---------- */
@@ -159,40 +141,38 @@ section {
   gap: 25px;
 }
 
-.project {
-  transition: transform 0.4s, box-shadow 0.4s;
+.project { cursor: pointer; transition: transform .3s; }
+.project:hover { transform: translateY(-8px); }
+
+/* ---------- MODAL ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.project:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(88,166,255,0.3);
+.modal-content {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
 }
 
-/* ---------- CERTIFICATES ---------- */
-.certs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 20px;
-}
+.close { cursor: pointer; color: var(--accent); }
 
 /* ---------- FOOTER ---------- */
 footer {
   text-align: center;
   padding: 30px;
-  color: var(--muted);
   border-top: 1px solid #21262d;
+  color: var(--muted);
 }
 
-/* ---------- ANIMATIONS ---------- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fill {
-  from { width: 0; }
-  to { width: var(--level); }
-}
+/* ---------- ANIM ---------- */
+@keyframes fill { to { width: var(--level); } }
 </style>
 </head>
 
@@ -201,91 +181,102 @@ footer {
 <nav>
   <ul>
     <li><a href="#about">About</a></li>
+    <li><a href="#stats">Stats</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#certs">Certificates</a></li>
+    <li><button onclick="toggleTheme()">🌓</button></li>
   </ul>
 </nav>
 
 <header id="about">
-  <div class="hero">
-    <h1>Indrudge Panwar</h1>
-    <p>BCA Final Year · <span>AI Systems & Backend Engineering</span></p>
-    <p>Designing scalable systems, building intelligent software, and engineering solutions that survive production.</p>
+  <div class="terminal">
+    <p><span class="prompt">$</span> whoami</p>
+    <p>Indrudge Panwar</p>
+    <p><span class="prompt">$</span> uname -a</p>
+    <p>AI Systems Engineer | Backend Architect | Linux Power User</p>
+    <p><span class="prompt">$</span> mission</p>
+    <p>Build systems that scale. Write code that survives.</p>
+    <a href="resume.pdf" download style="color:var(--accent)">⬇ Download Resume</a>
   </div>
 </header>
 
-<section id="skills">
-  <div class="container">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-grid">
-      <div class="card skill">
-        <h4>Python / AI & ML</h4>
-        <div class="bar"><span style="--level:90%"></span></div>
-      </div>
-      <div class="card skill">
-        <h4>Backend (Flask, FastAPI)</h4>
-        <div class="bar"><span style="--level:85%"></span></div>
-      </div>
-      <div class="card skill">
-        <h4>Databases (MongoDB, SQL)</h4>
-        <div class="bar"><span style="--level:80%"></span></div>
-      </div>
-      <div class="card skill">
-        <h4>Linux & DevOps</h4>
-        <div class="bar"><span style="--level:75%"></span></div>
-      </div>
-    </div>
+<section id="stats">
+  <div class="container stats">
+    <div class="card stat"><h3 data-count="15">0</h3><p>Projects</p></div>
+    <div class="card stat"><h3 data-count="3">0</h3><p>Years Coding</p></div>
+    <div class="card stat"><h3 data-count="10">0</h3><p>Technologies</p></div>
   </div>
 </section>
 
-<section id="education">
+<section id="skills">
   <div class="container">
-    <h2 class="section-title">Education</h2>
-    <div class="card timeline">
-      <div class="timeline-item">
-        <h4>Bachelor of Computer Applications (BCA)</h4>
-        <p>Final Year · Focus on AI, Systems & Software Engineering</p>
-      </div>
+    <h2>Skills</h2>
+    <div class="card skill">
+      Python / AI
+      <div class="bar"><span style="--level:90%"></span></div>
+    </div>
+    <div class="card skill">
+      Backend Systems
+      <div class="bar"><span style="--level:85%"></span></div>
+    </div>
+    <div class="card skill">
+      Linux / DevOps
+      <div class="bar"><span style="--level:80%"></span></div>
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
+    <h2>Projects</h2>
     <div class="projects">
-      <div class="card project">
-        <h3>Plagiarism Remover & AI Detector</h3>
-        <p>LLM-powered plagiarism detection and contextual rewriting using SBERT & Mistral.</p>
+      <div class="card project" onclick="openModal('Plagiarism Remover','LLM-powered plagiarism detection system.')">
+        Plagiarism Remover & AI Detector
       </div>
-      <div class="card project">
-        <h3>AI Sticker Generator</h3>
-        <p>Generative AI system for automated creative asset generation.</p>
-      </div>
-      <div class="card project">
-        <h3>Inventory Forecasting System</h3>
-        <p>ML-driven demand forecasting and analytics engine.</p>
+      <div class="card project" onclick="openModal('Inventory AI','Demand forecasting using ML models.')">
+        Inventory Forecasting
       </div>
     </div>
   </div>
 </section>
 
-<section id="certs">
-  <div class="container">
-    <h2 class="section-title">Certificates</h2>
-    <div class="certs">
-      <div class="card">Machine Learning Fundamentals</div>
-      <div class="card">Python for Data Science</div>
-      <div class="card">Linux System Administration</div>
-    </div>
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✕</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
   </div>
-</section>
+</div>
 
 <footer>
-  © 2025 Indrudge Panwar · GitHub Pages Portfolio
+  © 2025 Indrudge Panwar · GitHub Pages
 </footer>
+
+<script>
+/* Theme */
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.theme = document.body.classList.contains('light') ? 'light' : '';
+}
+if(localStorage.theme === 'light') document.body.classList.add('light');
+
+/* Modal */
+function openModal(t,d){
+  modal.style.display='flex';
+  modalTitle.textContent=t;
+  modalDesc.textContent=d;
+}
+function closeModal(){ modal.style.display='none'; }
+
+/* Counters */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  let target=+el.dataset.count, i=0;
+  let timer=setInterval(()=>{
+    el.textContent=++i;
+    if(i===target) clearInterval(timer);
+  },80);
+});
+</script>
 
 </body>
 </html>
