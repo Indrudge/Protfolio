@@ -51,9 +51,12 @@
     .timeline { position: relative; }
     .timeline::before { content:''; position:absolute; left:50%; width:2px; height:100%; background:rgba(255,255,255,.15); }
     .event {
+      position: relative;
       width:45%; padding:24px; background:rgba(255,255,255,.04);
       border-radius:16px; margin:30px 0; backdrop-filter:blur(10px);
     }
+    .event.left { left:0; }
+    .event.right { left:55%; }
     .event.left { left:0; }
     .event.right { left:55%; }
     .event span { color:#00ffd5; font-weight:600; }
@@ -157,7 +160,7 @@ setInterval(()=>{roleEl.style.opacity=0;setTimeout(()=>{r=(r+1)%roles.length;rol
 /* THREE.JS ORBS */
 const orbContainer=document.getElementById('orbs');
 const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(60,orbContainer.clientWidth/420,0.1,100);
+const camera=new THREE.PerspectiveCamera(60,orbContainer.clientWidth/420,0.1,100);(60,orbContainer.clientWidth/420,0.1,100);
 const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
 renderer.setSize(orbContainer.clientWidth,420);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -173,10 +176,10 @@ const projects=[
 ];
 const orbs=[],labels=[];
 projects.forEach((p,i)=>{
-  const geo=new THREE.CircleGeometry(1.8,64);
+  const geo=new THREE.CircleGeometry(1.8,64);(1.8,64);
   const mat=new THREE.MeshStandardMaterial({color:0x081020,emissive:0x00ffff,emissiveIntensity:.7,metalness:.9,roughness:.15});
   const orb=new THREE.Mesh(geo,mat);
-  orb.position.set((i-1.5)*5.5,0,0); orb.rotation.x=-Math.PI/2; orb.userData.link=p.link;
+  orb.position.set((i-1.5)*5.5,0,0); // circle faces camera by default – no rotation needed orb.userData.link=p.link;
   scene.add(orb); orbs.push(orb);
   const c=document.createElement('canvas'); c.width=512; c.height=128;
   const ctx=c.getContext('2d'); ctx.font='bold 46px Inter'; ctx.textAlign='center'; ctx.fillStyle='#00ffff'; ctx.shadowColor='#00ffff'; ctx.shadowBlur=18; ctx.fillText(p.name,256,80);
