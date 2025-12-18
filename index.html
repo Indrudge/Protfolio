@@ -1,121 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indrudge | Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
 
-body {
+body{
   background: radial-gradient(circle at top, #0b1020, #020617);
-  color: #e5e7eb;
-  overflow-x: hidden;
+  color:#e5e7eb;
+  overflow-x:hidden;
 }
 
 /* NAVBAR */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 64px;
-  backdrop-filter: blur(18px);
-  background: rgba(10,15,30,.55);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
+nav{
+  position:fixed;
+  top:0; width:100%; height:64px;
+  backdrop-filter:blur(16px);
+  background:rgba(10,15,30,.55);
+  display:flex; justify-content:center; align-items:center;
+  z-index:100;
 }
-nav ul { list-style: none; display: flex; gap: 44px; }
-nav a { color: #e5e7eb; text-decoration: none; font-weight: 500; }
-nav a:hover { color: #00ffd5; }
+nav ul{ list-style:none; display:flex; gap:44px; }
+nav a{ color:#e5e7eb; text-decoration:none; font-weight:500; }
+nav a:hover{ color:#00ffd5; }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
-.hero h1 {
-  font-size: 56px;
-  letter-spacing: 6px;
-  background: linear-gradient(120deg,#00ffd5,#7f00ff,#00ffd5);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: holo 6s linear infinite;
+.hero h1{
+  font-size:56px;
+  letter-spacing:6px;
+  background:linear-gradient(120deg,#00ffd5,#7f00ff,#00ffd5);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:holo 6s linear infinite;
 }
-.hero p {
-  margin-top: 14px;
-  font-size: 15px;
-  letter-spacing: 4px;
-  opacity: .85;
-  min-height: 22px;
-  transition: opacity .4s ease;
+.hero p{
+  margin-top:14px;
+  font-size:15px;
+  letter-spacing:4px;
+  opacity:.85;
+  min-height:22px;
 }
-@keyframes holo {
-  from { background-position: 0% }
-  to { background-position: 200% }
+@keyframes holo{
+  from{background-position:0%}
+  to{background-position:200%}
 }
 
-section { padding: 120px 10%; }
-h2 { font-size: 36px; margin-bottom: 40px; }
-
-/* PROJECTS */
-#orbs { width:100%; height:420px; }
+section{ padding:120px 10%; }
+h2{ font-size:36px; margin-bottom:40px; }
 
 /* FLOATING BACKGROUND */
-#bg-icons svg {
+#bg-icons svg{
   position:absolute;
-  width:22px;
-  height:22px;
+  width:22px; height:22px;
   opacity:.12;
-  animation: floatUp linear infinite;
-  filter: drop-shadow(0 0 6px rgba(0,255,213,.4));
-  pointer-events:none;
+  animation:floatUp linear infinite;
+  filter:drop-shadow(0 0 6px rgba(0,255,213,.4));
 }
-@keyframes floatUp {
-  from { transform: translateY(110vh) rotate(0deg); }
-  to { transform: translateY(-20vh) rotate(360deg); }
+@keyframes floatUp{
+  from{transform:translateY(110vh) rotate(0deg);}
+  to{transform:translateY(-20vh) rotate(360deg);}
 }
 
-/* CONNECT */
-.socials {
+/* EDUCATION */
+.timeline{ position:relative; }
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%; width:2px; height:100%;
+  background:rgba(255,255,255,.15);
+}
+.event{
+  width:45%;
+  padding:24px;
+  margin:30px 0;
+  background:rgba(255,255,255,.04);
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 35px rgba(0,255,213,.15);
+}
+.event.left{ left:0; position:relative; }
+.event.right{ left:55%; position:relative; }
+.event span{ color:#00ffd5; font-weight:600; }
+
+/* PROJECTS */
+#orbs{ width:100%; height:420px; }
+
+/* CERTS */
+.certs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.cert{
+  padding:36px;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(127,0,255,.25),rgba(0,255,213,.25));
+  backdrop-filter:blur(14px);
+  box-shadow:0 0 50px rgba(127,0,255,.25);
+  cursor:pointer;
+  transition:.3s;
+}
+.cert:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 80px rgba(0,255,213,.45);
+}
+
+/* FOOTER */
+.socials{
   display:flex;
   justify-content:center;
   gap:40px;
   margin-top:40px;
 }
-.socials svg {
-  width:42px;
-  height:42px;
+.socials svg{
+  width:42px; height:42px;
   fill:#9ca3af;
   transition:.3s;
 }
-.socials svg:hover {
+.socials svg:hover{
   fill:#00ffd5;
-  filter: drop-shadow(0 0 12px #00ffd5);
-  transform: scale(1.15);
+  filter:drop-shadow(0 0 12px #00ffd5);
+  transform:scale(1.15);
 }
-
-footer {
-  text-align:center;
-  padding:100px 10%;
-}
-.btn {
+footer{ text-align:center; padding:100px 10%; }
+.btn{
   display:inline-block;
   padding:16px 36px;
   border-radius:40px;
-  background: linear-gradient(135deg,#00ffd5,#7f00ff);
+  background:linear-gradient(135deg,#00ffd5,#7f00ff);
   color:#020617;
-  text-decoration:none;
   font-weight:600;
+  text-decoration:none;
   box-shadow:0 0 40px rgba(0,255,213,.4);
 }
 </style>
@@ -127,6 +156,7 @@ footer {
 
 <nav>
 <ul>
+<li><a href="#education">Education</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#certs">Certifications</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -140,62 +170,86 @@ footer {
   </div>
 </div>
 
+<section id="education">
+<h2>Education</h2>
+<div class="timeline">
+  <div class="event left"><span>2019</span><br><strong>10th (ICSE)</strong><br>Cambrian Hall School</div>
+  <div class="event right"><span>2021</span><br><strong>12th (ICSE)</strong><br>Cambrian Hall School</div>
+  <div class="event left"><span>2025</span><br><strong>BCA (AI/ML)</strong><br>UPES</div>
+</div>
+</section>
+
 <section id="projects">
 <h2>Projects</h2>
 <div id="orbs"></div>
 </section>
 
+<section id="certs">
+<h2>Top Certifications</h2>
+<div class="certs">
+  <div class="cert" data-title="Certification One" data-desc="AI & ML Fundamentals">Certification One</div>
+  <div class="cert" data-title="Certification Two" data-desc="Backend Systems & Microservices">Certification Two</div>
+  <div class="cert" data-title="Certification Three" data-desc="Linux & Systems Engineering">Certification Three</div>
+</div>
+</section>
+
 <footer id="contact">
 <h2>Connect</h2>
 <div class="socials">
-<a href="https://github.com/Indrudge" target="_blank">GitHub</a>
-<a href="https://linkedin.com" target="_blank">LinkedIn</a>
-<a href="https://x.com" target="_blank">X</a>
+<a href="https://github.com/Indrudge" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7"/></svg>
+</a>
+<a href="https://linkedin.com" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1"/></svg>
+</a>
+<a href="https://x.com" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22"/></svg>
+</a>
 </div>
+<br><br>
+<a class="btn" href="#">Download Resume</a>
 </footer>
+
+<!-- CERT MODAL -->
+<div id="cert-modal" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,.85);align-items:center;justify-content:center;z-index:200;">
+  <div style="background:#0f172a;padding:40px;border-radius:24px;box-shadow:0 0 60px rgba(0,255,213,.4);text-align:center;">
+    <h3 id="cert-title" style="color:#00ffd5"></h3>
+    <p id="cert-desc"></p><br>
+    <button class="btn" onclick="closeCert()">Close</button>
+  </div>
+</div>
 
 <script>
 /* BACKGROUND ICONS */
-const bgIcons=[
-'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>',
-'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'
-];
+const icons=['<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>','<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'];
 for(let i=0;i<30;i++){
   const d=document.createElement('div');
-  d.innerHTML=bgIcons[Math.floor(Math.random()*bgIcons.length)];
+  d.innerHTML=icons[Math.floor(Math.random()*icons.length)];
   const s=d.firstChild;
   s.style.left=Math.random()*100+'vw';
   s.style.animationDuration=15+Math.random()*25+'s';
   document.getElementById('bg-icons').appendChild(s);
 }
 
-/* SMOOTH TYPEWRITER TEXT */
-const roles=[
-  "AI SYSTEMS ENGINEER",
-  "BACKEND ARCHITECT",
-  "LINUX POWER USER",
-  "OPEN SOURCE BUILDER"
-];
-let roleIndex=0,charIndex=0,deleting=false;
-const textEl=document.getElementById('dynamic-text');
+/* HERO TEXT */
+const roles=["AI SYSTEMS ENGINEER","BACKEND ARCHITECT","LINUX POWER USER","OPEN SOURCE BUILDER"];
+let ri=0,ci=0,del=false;
+const text=document.getElementById('dynamic-text');
+(function type(){
+  const cur=roles[ri];
+  if(!del){ text.textContent=cur.slice(0,++ci); if(ci===cur.length) setTimeout(()=>del=true,1200);}
+  else{ text.textContent=cur.slice(0,--ci); if(ci===0){ del=false; ri=(ri+1)%roles.length;}}
+  setTimeout(type,del?40:70);
+})();
 
-function typeLoop(){
-  const current=roles[roleIndex];
-  if(!deleting){
-    textEl.textContent=current.slice(0,++charIndex);
-    if(charIndex===current.length){
-      setTimeout(()=>deleting=true,1200);
-    }
-  } else {
-    textEl.textContent=current.slice(0,--charIndex);
-    if(charIndex===0){
-      deleting=false;
-      roleIndex=(roleIndex+1)%roles.length;
-    }
-  }
-  setTimeout(typeLoop,deleting?40:70);
-}
-typeLoop();
+/* CERT MODAL */
+const modal=document.getElementById('cert-modal');
+document.querySelectorAll('.cert').forEach(c=>{
+  c.onclick=()=>{document.getElementById('cert-title').textContent=c.dataset.title;
+  document.getElementById('cert-desc').textContent=c.dataset.desc;
+  modal.style.display='flex';};
+});
+function closeCert(){modal.style.display='none';}
 
 /* THREE.JS ORBS */
 const container=document.getElementById('orbs');
@@ -206,51 +260,68 @@ renderer.setSize(container.clientWidth,420);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0xffffff,.6));
-const light=new THREE.PointLight(0xffffff,1.4,60);
+scene.add(new THREE.AmbientLight(0xffffff,.5));
+const light=new THREE.PointLight(0x00ffff,1.5,50);
 light.position.set(0,0,10);
 scene.add(light);
 
-/* BEAUTIFUL RADIAL GRADIENT TEXTURE */
-function orbGradient(){
-  const c=document.createElement('canvas');
-  c.width=c.height=256;
+function gradientTex(){
+  const c=document.createElement('canvas');c.width=c.height=256;
   const g=c.getContext('2d');
-  const r=g.createRadialGradient(128,128,20,128,128,128);
-  r.addColorStop(0,'#00ffd5');
-  r.addColorStop(0.5,'#7f00ff');
-  r.addColorStop(1,'#020617');
-  g.fillStyle=r;
-  g.fillRect(0,0,256,256);
+  const grd=g.createRadialGradient(128,128,20,128,128,128);
+  grd.addColorStop(0,'#00ffd5');
+  grd.addColorStop(.6,'#7f00ff');
+  grd.addColorStop(1,'#020617');
+  g.fillStyle=grd;g.fillRect(0,0,256,256);
   return new THREE.CanvasTexture(c);
 }
+function labelSprite(t){
+  const c=document.createElement('canvas');const g=c.getContext('2d');
+  g.font='bold 36px Inter';const w=g.measureText(t).width;
+  c.width=w+40;c.height=64;
+  g.font='bold 36px Inter';g.fillStyle='#fff';
+  g.textAlign='center';g.textBaseline='middle';
+  g.shadowColor='#00ffd5';g.shadowBlur=20;
+  g.fillText(t,c.width/2,c.height/2);
+  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
+  s.scale.set(3.5,0.9,1);return s;
+}
 
-const texture=orbGradient();
+const projects=[
+{name:'PlagRemover',link:'https://github.com/Indrudge/plagremover'},
+{name:'Major 1',link:'https://github.com/Indrudge/Major1'},
+{name:'Major 2',link:'https://github.com/Indrudge/Major2'},
+{name:'Disaster Quiz',link:'https://github.com/Indrudge/disasterquiz'}
+];
 
-const projects=["PLAGREMOVER","MAJOR 1","MAJOR 2","DISASTER QUIZ"];
-const orbs=[];
-
-projects.forEach((name,i)=>{
-  const mat=new THREE.MeshStandardMaterial({
-    map:texture,
-    emissive:0x000000,
-    roughness:.2,
-    metalness:.1
-  });
-  const orb=new THREE.Mesh(new THREE.CircleGeometry(1.9,64),mat);
+const tex=gradientTex(),orbs=[];
+projects.forEach((p,i)=>{
+  const orb=new THREE.Mesh(new THREE.CircleGeometry(1.9,64),
+    new THREE.MeshStandardMaterial({map:tex,emissive:0x000000}));
   orb.position.x=(i-1.5)*5.5;
-  scene.add(orb);
-  orbs.push(orb);
+  const lbl=labelSprite(p.name.toUpperCase());
+  lbl.position.y=2.8; orb.add(lbl);
+  orb.userData=p; scene.add(orb); orbs.push(orb);
 });
-
 camera.position.z=10;
 
-function animate(){
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+renderer.domElement.onclick=()=>{
+  ray.setFromCamera(mouse,camera);
+  const h=ray.intersectObjects(orbs);
+  if(h.length) window.open(h[0].object.userData.link,'_blank');
+};
+renderer.domElement.onmousemove=e=>{
+  const r=renderer.domElement.getBoundingClientRect();
+  mouse.x=((e.clientX-r.left)/r.width)*2-1;
+  mouse.y=-((e.clientY-r.top)/r.height)*2+1;
+};
+
+(function animate(){
   requestAnimationFrame(animate);
   orbs.forEach((o,i)=>o.position.y=Math.sin(Date.now()*0.002+i)*.45);
   renderer.render(scene,camera);
-}
-animate();
+})();
 </script>
 
 </body>
