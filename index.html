@@ -1,115 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indrudge Panwar | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0d1117;
-            color: #ffffff;
-            text-align: center;
-        }
-        header {
-            background: #161b22;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        section {
-            padding: 50px;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            background: #161b22;
-            border-radius: 8px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-        }
-        .projects {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .project {
-            background: #21262d;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 8px;
-            width: 40%;
-            transition: transform 0.3s;
-        }
-        .project:hover {
-            transform: scale(1.05);
-        }
-        .btn {
-            background-color: #58a6ff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background-color: #1f6feb;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
-    <script>
-        function toggleProjects() {
-            var projects = document.getElementById("projects-section");
-            if (projects.classList.contains("hidden")) {
-                projects.classList.remove("hidden");
-            } else {
-                projects.classList.add("hidden");
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indrudge Panwar | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --accent: #58a6ff;
+  --text: #c9d1d9;
+  --muted: #8b949e;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- NAVBAR ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,17,23,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #21262d;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px;
+  margin: 0;
+  list-style: none;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* ---------- HERO ---------- */
+header {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero {
+  max-width: 900px;
+  padding: 40px;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #58a6ff, #9d7cff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.hero span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* ---------- SKILLS ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+}
+
+.skill h4 {
+  margin-bottom: 8px;
+}
+
+.bar {
+  background: #21262d;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 10px;
+  background: var(--accent);
+  width: 0;
+  animation: fill 1.5s forwards;
+}
+
+/* ---------- EDUCATION ---------- */
+.timeline {
+  border-left: 3px solid var(--accent);
+  padding-left: 30px;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+}
+
+.timeline-item h4 {
+  margin: 0;
+}
+
+/* ---------- PROJECTS ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+}
+
+.project {
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.project:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(88,166,255,0.3);
+}
+
+/* ---------- CERTIFICATES ---------- */
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+  border-top: 1px solid #21262d;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fill {
+  from { width: 0; }
+  to { width: var(--level); }
+}
+</style>
 </head>
+
 <body>
-    <header>Indrudge Panwar - Code & Creativity</header>
-    
-    <section>
-        <div class="container">
-            <h1>Hey, I'm Indrudge 👋</h1>
-            <p>BCA Final Year | AI/ML Enthusiast | Full-Stack Developer</p>
-            <p>Transforming ideas into scalable solutions with code.</p>
-            <button class="btn" onclick="toggleProjects()">Show Projects</button>
-        </div>
-    </section>
-    
-    <section id="projects-section" class="hidden">
-        <div class="container">
-            <h2>Projects 🚀</h2>
-            <div class="projects">
-                <div class="project">
-                    <h3>AI-Powered Sticker Generator</h3>
-                    <p>Built a generative AI model for custom sticker design.</p>
-                    <a href="#">🔗 View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Advanced Inventory Management System</h3>
-                    <p>Implemented ML-based demand forecasting.</p>
-                    <a href="#">🔗 View Project</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2>Connect with Me 🤝</h2>
-            <p><a href="https://github.com/indrudgepanwar" target="_blank">GitHub</a> | <a href="#">LinkedIn</a> | <a href="#">Portfolio</a></p>
-        </div>
-    </section>
+
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certificates</a></li>
+  </ul>
+</nav>
+
+<header id="about">
+  <div class="hero">
+    <h1>Indrudge Panwar</h1>
+    <p>BCA Final Year · <span>AI Systems & Backend Engineering</span></p>
+    <p>Designing scalable systems, building intelligent software, and engineering solutions that survive production.</p>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="card skill">
+        <h4>Python / AI & ML</h4>
+        <div class="bar"><span style="--level:90%"></span></div>
+      </div>
+      <div class="card skill">
+        <h4>Backend (Flask, FastAPI)</h4>
+        <div class="bar"><span style="--level:85%"></span></div>
+      </div>
+      <div class="card skill">
+        <h4>Databases (MongoDB, SQL)</h4>
+        <div class="bar"><span style="--level:80%"></span></div>
+      </div>
+      <div class="card skill">
+        <h4>Linux & DevOps</h4>
+        <div class="bar"><span style="--level:75%"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="card timeline">
+      <div class="timeline-item">
+        <h4>Bachelor of Computer Applications (BCA)</h4>
+        <p>Final Year · Focus on AI, Systems & Software Engineering</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="card project">
+        <h3>Plagiarism Remover & AI Detector</h3>
+        <p>LLM-powered plagiarism detection and contextual rewriting using SBERT & Mistral.</p>
+      </div>
+      <div class="card project">
+        <h3>AI Sticker Generator</h3>
+        <p>Generative AI system for automated creative asset generation.</p>
+      </div>
+      <div class="card project">
+        <h3>Inventory Forecasting System</h3>
+        <p>ML-driven demand forecasting and analytics engine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="container">
+    <h2 class="section-title">Certificates</h2>
+    <div class="certs">
+      <div class="card">Machine Learning Fundamentals</div>
+      <div class="card">Python for Data Science</div>
+      <div class="card">Linux System Administration</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Indrudge Panwar · GitHub Pages Portfolio
+</footer>
+
 </body>
 </html>
