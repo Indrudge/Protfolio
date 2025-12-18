@@ -208,84 +208,99 @@
     document.getElementById('bg-icons').appendChild(svg);
   }
 
-  /* ===== THREE.JS PROJECT ORBS ===== */
+  /* ===== THREE.JS PROJECT ORBS (FIXED & WORKING) ===== */
+  const orbContainer = document.getElementById('orbs');
+  orbContainer.innerHTML = '';
+
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / 420, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(60, orbContainer.clientWidth / 420, 0.1, 100);
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth * 0.9, 420);
+  renderer.setSize(orbContainer.clientWidth, 420);
   renderer.setPixelRatio(window.devicePixelRatio);
-  document.getElementById('orbs').appendChild(renderer.domElement);
+  orbContainer.appendChild(renderer.domElement);
 
-  const ambient = new THREE.AmbientLight(0x00aaff, 0.6);
-  scene.add(ambient);
+  /* Lights */
+  scene.add(new THREE.AmbientLight(0x00ffff, 0.6));
+  const mainLight = new THREE.PointLight(0x00ffff, 2.2, 50);
+  mainLight.position.set(0, 0, 10);
+  scene.add(mainLight);
 
-  const light = new THREE.PointLight(0x00ffd5, 2, 100);
-  light.position.set(0, 0, 10);
-  scene.add(light);
+  /* Project Data */
+  const projects = [
+    { name: 'PlagRemover', link: 'https://github.com/Indrudge/plagremover' },
+    { name: 'Major Project 1', link: 'https://github.com/Indrudge/Major1' },
+    { name: 'Major Project 2', link: 'https://github.com/Indrudge/Major2' },
+    { name: 'Disaster Quiz', link: 'https://github.com/Indrudge/disasterquiz' }
+  ];
 
   const spheres = [];
-  const baseY = [];
-  const links = [
-  'https://github.com/Indrudge/plagremover',
-  'https://github.com/Indrudge/Major1',
-  'https://github.com/Indrudge/Major2',
-  'https://github.com/Indrudge/disasterquiz'
-];
+  const labels = [];
 
-  for (let i = 0; i < 4; i++) {
-    const geo = new THREE.SphereGeometry(1.6, 64, 64);
-    const mat = new THREE.MeshStandardMaterial({
+  /* Create Orbs */
+  projects.forEach((proj, i) => {
+    const geometry = new THREE.SphereGeometry(1.6, 64, 64);
+    const material = new THREE.MeshStandardMaterial({
       color: 0x081020,
       emissive: 0x00ffff,
-      emissiveIntensity: 0.45,
+      emissiveIntensity: 0.6,
       metalness: 0.9,
       roughness: 0.12
     });
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.x = (i - 1.5) * 5.2;
-    mesh.position.y = 0;
-    mesh.userData = { link: links[i] };
-    baseY.push(0);
-    scene.add(mesh);
 
-    // Neon glow light attached to orb
-    const glowLight = new THREE.PointLight(0x00ffff, 1.2, 6);
-    glowLight.position.set(0, 0, 0);
-    mesh.add(glowLight);
-    spheres.push(mesh);
-  }
+    const orb = new THREE.Mesh(geometry, material);
+    orb.position.x = (i - 1.5) * 5.5;
+    orb.userData.link = proj.link;
+    scene.add(orb);
+    spheres.push(orb);
 
-  camera.position.z = 9;
+    /* Glow light */
+    const glow = new THREE.PointLight(0x00ffff, 1.6, 8);
+    orb.add(glow);
 
-  function animate() {
-    requestAnimationFrame(animate);
-    spheres.forEach((s, i) => {
-      s.rotation.y += 0.008;
-      s.position.y = baseY[i] + Math.sin(Date.now() * 0.002 + i) * 0.45;
-    });
-    renderer.render(scene, camera);
-  }
-  animate();
+    /* Text label */
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    ctx.font = 'bold 48px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#00ffff';
+    ctx.shadowColor = '#00ffff';
+    ctx.shadowBlur = 20;
+    ctx.fillText(proj.name, 256, 80);
 
-  /* ===== INTERACTION: HOVER + CLICK ===== */
+    const texture = new THREE.CanvasTexture(canvas);
+    const labelMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+    const label = new THREE.Sprite(labelMat);
+    label.position.set(orb.position.x, -2.4, 0);
+    label.scale.set(4.5, 1.1, 1);
+    scene.add(label);
+    labels.push(label);
+  });
+
+  camera.position.z = 10;
+
+  /* Interaction */
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
 
   window.addEventListener('mousemove', (e) => {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / 420) * 2 + 1;
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(spheres);
+    const hits = raycaster.intersectObjects(spheres);
 
     spheres.forEach(s => {
-      s.material.emissiveIntensity = 0.35;
+      s.material.emissiveIntensity = 0.6;
       s.scale.set(1,1,1);
     });
 
-    if (intersects.length > 0) {
-      intersects[0].object.material.emissiveIntensity = 2.4;
-      intersects[0].object.scale.set(1.15, 1.15, 1.15);
+    if (hits.length > 0) {
+      const o = hits[0].object;
+      o.material.emissiveIntensity = 1.6;
+      o.scale.set(1.15,1.15,1.15);
       document.body.style.cursor = 'pointer';
     } else {
       document.body.style.cursor = 'default';
@@ -294,13 +309,23 @@
 
   window.addEventListener('click', () => {
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(spheres);
-    if (intersects.length > 0) {
-      window.open(intersects[0].object.userData.link, '_blank');
+    const hits = raycaster.intersectObjects(spheres);
+    if (hits.length > 0) {
+      window.open(hits[0].object.userData.link, '_blank');
     }
   });
 
-  /* ===== CERT MODAL LOGIC ===== */
+  function animate() {
+    requestAnimationFrame(animate);
+    spheres.forEach((s, i) => {
+      s.rotation.y += 0.006;
+      s.position.y = Math.sin(Date.now() * 0.002 + i) * 0.45;
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+
+/* ===== CERT MODAL LOGIC ===== */
   function showCert(title, issuer, year, skills) {
     document.getElementById('certTitle').textContent = title;
     document.getElementById('certBody').innerHTML = `<strong>Issuer:</strong> ${issuer}<br><strong>Year:</strong> ${year}<br><strong>Skills:</strong> ${skills}`;
