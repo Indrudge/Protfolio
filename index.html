@@ -163,6 +163,48 @@ h2 { text-align: center; margin-bottom: 50px; }
 
 .close { cursor: pointer; color: var(--accent); }
 
+/* ---------- EDUCATION TIMELINE ---------- */
+.timeline {
+  border-left: 3px solid var(--accent);
+  padding-left: 30px;
+}
+
+.timeline-item {
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  margin-bottom: 5px;
+}
+
+/* ---------- CERTIFICATES ---------- */
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.certs .card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.certs .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(88,166,255,0.25);
+}
+
 /* ---------- FOOTER ---------- */
 footer {
   text-align: center;
@@ -183,6 +225,8 @@ footer {
     <li><a href="#about">About</a></li>
     <li><a href="#stats">Stats</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certificates">Certificates</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><button onclick="toggleTheme()">🌓</button></li>
   </ul>
@@ -222,6 +266,58 @@ footer {
     <div class="card skill">
       Linux / DevOps
       <div class="bar"><span style="--level:80%"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <h2>Education</h2>
+
+    <div class="card timeline">
+      <div class="timeline-item">
+        <h3>Bachelor of Computer Applications (BCA)</h3>
+        <p><strong>Status:</strong> Final Year</p>
+        <p><strong>Focus Areas:</strong> Artificial Intelligence, Backend Systems, Software Engineering</p>
+        <p><strong>Description:</strong>  
+          Strong foundation in computer science fundamentals including data structures, databases,
+          operating systems, networking, and AI-driven application development.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Senior Secondary Education</h3>
+        <p><strong>Stream:</strong> Science / Computer Applications</p>
+        <p>Developed early interest in programming, systems, and problem solving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates">
+  <div class="container">
+    <h2>Certificates & Credentials</h2>
+
+    <div class="certs">
+      <div class="card">
+        <h4>Machine Learning Fundamentals</h4>
+        <p>Covered supervised & unsupervised learning, model evaluation, and real-world ML use cases.</p>
+      </div>
+
+      <div class="card">
+        <h4>Python for Data Science</h4>
+        <p>Hands-on experience with data analysis, NumPy, Pandas, and ML pipelines.</p>
+      </div>
+
+      <div class="card">
+        <h4>Linux System Administration</h4>
+        <p>System management, shell scripting, process control, and server fundamentals.</p>
+      </div>
+
+      <div class="card">
+        <h4>Backend Development & APIs</h4>
+        <p>RESTful API design, backend architecture, and database integration.</p>
+      </div>
     </div>
   </div>
 </section>
