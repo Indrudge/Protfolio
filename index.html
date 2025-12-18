@@ -56,7 +56,20 @@
     .event span { color: #00ffd5; font-weight: 600; }
 
     /* ===== 3D PROJECT ORBS ===== */
-    #orbs { height: 420px; }
+    #orbs { height: 420px; width: 100%; }
+
+    /* ===== FLOATING SVG BACKGROUND ===== */
+    #bg-icons svg {
+      position: absolute;
+      width: 22px; height: 22px;
+      opacity: 0.12;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 0 6px rgba(0,255,213,.4));
+    }
+    @keyframes floatUp {
+      from { transform: translateY(110vh) rotate(0deg); }
+      to { transform: translateY(-20vh) rotate(360deg); }
+    }
 
     /* ===== CERTIFICATIONS ===== */
     .certs { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
@@ -90,7 +103,7 @@
       box-shadow: 0 0 40px rgba(0,255,213,.4);
     }
   </style></head>
-<body><nav>
+<body><!-- FLOATING SVG BACKGROUND ICONS --><div id="bg-icons"></div><nav>
   <ul>
     <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -126,12 +139,34 @@
   <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.42 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2.03-.04-4.64-2.83-4.64-2.83 0-3.27 2.2-3.27 4.5V24H8z"/></svg>
 </a>
 
-<!-- C Language -->
-<svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 3.2l7 3.3v6.9l-7 3.3-7-3.3V8.5l7-3.3zm1.8 3.7c-2.3 0-4.1 1.9-4.1 4.2s1.8 4.2 4.1 4.2c1.2 0 2.3-.5 3.1-1.3l-1.3-1.3c-.4.4-1 .7-1.8.7-1.3 0-2.3-1.1-2.3-2.3s1-2.3 2.3-2.3c.7 0 1.4.3 1.8.7l1.3-1.3c-.8-.8-1.9-1.3-3.1-1.3z"/></svg>
+<!-- X (Twitter) -->
+<a href="https://x.com" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
+</a>
 
   </div><br><br> <a class="btn" href="https://drive.google.com" target="_blank">Download Resume</a>
 
 </footer><script>
+
+  /* ===== FLOATING SVG BACKGROUND ICONS ===== */
+  const icons = [
+    '<svg viewBox="0 0 24 24"><path d="M12 2c5.5 0 5 3.6 5 3.6s.1 3.7-5 3.7-5-3.7-5-3.7S6.5 2 12 2z"/></svg>', // Python-ish
+    '<svg viewBox="0 0 24 24"><path d="M12 2l10 6v8l-10 6L2 16V8z"/></svg>', // Linux-ish
+    '<svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/></svg>', // HTML-ish
+    '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>' // OpenAI-ish
+  ];
+
+  for (let i = 0; i < 25; i++) {
+    const el = document.createElement('div');
+    el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    const svg = el.firstChild;
+    svg.style.left = Math.random() * 100 + 'vw';
+    svg.style.animationDuration = 15 + Math.random() * 20 + 's';
+    svg.style.animationDelay = Math.random() * 10 + 's';
+    document.getElementById('bg-icons').appendChild(svg);
+  }
+
+  /* ===== THREE.JS PROJECT ORBS ===== */
   /* ===== THREE.JS PROJECT ORBS ===== */
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 420, 0.1, 1000);
@@ -144,6 +179,7 @@
   scene.add(light);
 
   const spheres = [];
+const baseY = [];
   for (let i = 0; i < 4; i++) {
     const geo = new THREE.SphereGeometry(1, 64, 64);
     const mat = new THREE.MeshStandardMaterial({
@@ -155,6 +191,8 @@
     });
     const mesh = new THREE.Mesh(geo, mat);
     mesh.position.x = (i - 1.5) * 3;
+    mesh.position.y = 0;
+    baseY.push(0);
     scene.add(mesh);
     spheres.push(mesh);
   }
@@ -163,9 +201,9 @@
 
   function animate() {
     requestAnimationFrame(animate);
-    spheres.forEach(s => {
+    spheres.forEach((s, i) => {
       s.rotation.y += 0.01;
-      s.rotation.x += 0.005;
+      s.position.y = baseY[i] + Math.sin(Date.now() * 0.002 + i) * 0.4;
     });
     renderer.render(scene, camera);
   }
