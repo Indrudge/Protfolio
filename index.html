@@ -89,6 +89,7 @@
     /* ===== CERTIFICATIONS ===== */
     .certs { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
     .cert {
+      cursor: pointer;
       padding: 36px; border-radius: 24px;
       background: linear-gradient(135deg, rgba(127,0,255,.25), rgba(0,255,213,.25));
       backdrop-filter: blur(14px);
@@ -156,9 +157,9 @@
 </section><section id="certs">
   <h2>Top Certifications</h2>
   <div class="certs" style="align-items: stretch;">
-    <div class="cert">Certification One</div>
-    <div class="cert">Certification Two</div>
-    <div class="cert">Certification Three</div>
+    <div class="cert" onclick="showCert('AI Foundations','Google','2024','Machine Learning, Neural Networks')">Certification One</div>
+    <div class="cert" onclick="showCert('Backend Systems','Coursera','2023','APIs, Databases, System Design')">Certification Two</div>
+    <div class="cert" onclick="showCert('Linux Administration','Linux Foundation','2023','Shell, Networking, Security')">Certification Three</div>
   </div>
 </section><footer id="contact">
   <h2>Connect</h2>  <!-- SVG ICONS -->  <div class="socials">
@@ -177,7 +178,14 @@
 
   </div><br><br> <a class="btn" href="https://drive.google.com" target="_blank">Download Resume</a>
 
-</footer><script>
+</footer><!-- CERT MODAL --><div id="certModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(8px); z-index:200; align-items:center; justify-content:center;">
+  <div style="background:rgba(15,20,40,.9); padding:32px; border-radius:20px; max-width:420px; box-shadow:0 0 60px rgba(0,255,213,.4); text-align:center;">
+    <h3 id="certTitle"></h3>
+    <p id="certBody" style="margin-top:12px; opacity:.85"></p>
+    <br>
+    <button onclick="closeCert()" class="btn">Close</button>
+  </div>
+</div><script>
 
   /* ===== FLOATING SVG BACKGROUND ICONS ===== */
   const icons = [
@@ -222,11 +230,11 @@
   ];
 
   for (let i = 0; i < 4; i++) {
-    const geo = new THREE.SphereGeometry(1.1, 64, 64);
+    const geo = new THREE.SphereGeometry(1.6, 64, 64);
     const mat = new THREE.MeshStandardMaterial({
       color: 0x0b1020,
       emissive: 0x00aaff,
-      emissiveIntensity: 0.25,
+      emissiveIntensity: 0.35,
       metalness: 0.9,
       roughness: 0.15
     });
@@ -262,10 +270,14 @@
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(spheres);
 
-    spheres.forEach(s => s.material.emissiveIntensity = 0.25);
+    spheres.forEach(s => {
+      s.material.emissiveIntensity = 0.35;
+      s.scale.set(1,1,1);
+    });
 
     if (intersects.length > 0) {
-      intersects[0].object.material.emissiveIntensity = 1.2;
+      intersects[0].object.material.emissiveIntensity = 1.8;
+      intersects[0].object.scale.set(1.15, 1.15, 1.15);
       document.body.style.cursor = 'pointer';
     } else {
       document.body.style.cursor = 'default';
@@ -280,7 +292,17 @@
     }
   });
 
-  /* ===== DYNAMIC HERO TEXT ===== */
+  /* ===== CERT MODAL LOGIC ===== */
+  function showCert(title, issuer, year, skills) {
+    document.getElementById('certTitle').textContent = title;
+    document.getElementById('certBody').innerHTML = `<strong>Issuer:</strong> ${issuer}<br><strong>Year:</strong> ${year}<br><strong>Skills:</strong> ${skills}`;
+    document.getElementById('certModal').style.display = 'flex';
+  }
+  function closeCert() {
+    document.getElementById('certModal').style.display = 'none';
+  }
+
+/* ===== DYNAMIC HERO TEXT ===== */
   const roles = [
     "AI SYSTEMS ENGINEER",
     "BACKEND ARCHITECT",
