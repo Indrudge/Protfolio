@@ -9,10 +9,10 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
 body{
-  background: radial-gradient(circle at top, #0b1020, #020617);
+  background:radial-gradient(circle at top,#0b1020,#020617);
   color:#e5e7eb;
   overflow-x:hidden;
 }
@@ -20,22 +20,22 @@ body{
 /* NAVBAR */
 nav{
   position:fixed;
-  top:0; width:100%; height:64px;
-  backdrop-filter:blur(16px);
+  top:0;width:100%;height:64px;
+  backdrop-filter:blur(18px);
   background:rgba(10,15,30,.55);
-  display:flex; justify-content:center; align-items:center;
+  display:flex;justify-content:center;align-items:center;
   z-index:100;
 }
-nav ul{ list-style:none; display:flex; gap:44px; }
-nav a{ color:#e5e7eb; text-decoration:none; font-weight:500; }
-nav a:hover{ color:#00ffd5; }
+nav ul{list-style:none;display:flex;gap:44px;}
+nav a{color:#e5e7eb;text-decoration:none;font-weight:500;}
+nav a:hover{color:#00ffd5;}
 
 /* HERO */
 .hero{
   height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
 }
 .hero h1{
@@ -50,25 +50,26 @@ nav a:hover{ color:#00ffd5; }
 .hero p{
   margin-top:14px;
   font-size:15px;
-  letter-spacing:4px;
+  letter-spacing:3px;
   opacity:.85;
-  min-height:22px;
+  transition:opacity .6s ease, transform .6s ease;
 }
 @keyframes holo{
   from{background-position:0%}
   to{background-position:200%}
 }
 
-section{ padding:120px 10%; }
-h2{ font-size:36px; margin-bottom:40px; }
+section{padding:120px 10%;}
+h2{font-size:36px;margin-bottom:40px;}
 
 /* FLOATING BACKGROUND */
 #bg-icons svg{
   position:absolute;
-  width:22px; height:22px;
+  width:22px;height:22px;
   opacity:.12;
   animation:floatUp linear infinite;
   filter:drop-shadow(0 0 6px rgba(0,255,213,.4));
+  pointer-events:none;
 }
 @keyframes floatUp{
   from{transform:translateY(110vh) rotate(0deg);}
@@ -76,11 +77,12 @@ h2{ font-size:36px; margin-bottom:40px; }
 }
 
 /* EDUCATION */
-.timeline{ position:relative; }
+.timeline{position:relative;}
 .timeline::before{
   content:'';
   position:absolute;
-  left:50%; width:2px; height:100%;
+  left:50%;
+  width:2px;height:100%;
   background:rgba(255,255,255,.15);
 }
 .event{
@@ -92,12 +94,12 @@ h2{ font-size:36px; margin-bottom:40px; }
   backdrop-filter:blur(10px);
   box-shadow:0 0 35px rgba(0,255,213,.15);
 }
-.event.left{ left:0; position:relative; }
-.event.right{ left:55%; position:relative; }
-.event span{ color:#00ffd5; font-weight:600; }
+.event.left{position:relative;left:0;}
+.event.right{position:relative;left:55%;}
+.event span{color:#00ffd5;font-weight:600;}
 
 /* PROJECTS */
-#orbs{ width:100%; height:420px; }
+#orbs{width:100%;height:420px;}
 
 /* CERTS */
 .certs{
@@ -127,7 +129,7 @@ h2{ font-size:36px; margin-bottom:40px; }
   margin-top:40px;
 }
 .socials svg{
-  width:42px; height:42px;
+  width:42px;height:42px;
   fill:#9ca3af;
   transition:.3s;
 }
@@ -136,7 +138,7 @@ h2{ font-size:36px; margin-bottom:40px; }
   filter:drop-shadow(0 0 12px #00ffd5);
   transform:scale(1.15);
 }
-footer{ text-align:center; padding:100px 10%; }
+footer{text-align:center;padding:100px 10%;}
 .btn{
   display:inline-block;
   padding:16px 36px;
@@ -175,7 +177,7 @@ footer{ text-align:center; padding:100px 10%; }
 <div class="timeline">
   <div class="event left"><span>2019</span><br><strong>10th (ICSE)</strong><br>Cambrian Hall School</div>
   <div class="event right"><span>2021</span><br><strong>12th (ICSE)</strong><br>Cambrian Hall School</div>
-  <div class="event left"><span>2025</span><br><strong>BCA (AI/ML)</strong><br>UPES</div>
+  <div class="event left"><span>2025</span><br><strong>BCA (AI / ML)</strong><br>UPES</div>
 </div>
 </section>
 
@@ -200,14 +202,14 @@ footer{ text-align:center; padding:100px 10%; }
 <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7"/></svg>
 </a>
 <a href="https://linkedin.com" target="_blank">
-<svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1"/></svg>
+<svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.7-1.3 2.3-2.6 4.7-2.6C22.4 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.3 2.2-3.3 4.5V24H8z"/></svg>
 </a>
 <a href="https://x.com" target="_blank">
-<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22"/></svg>
+<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
 </a>
 </div>
 <br><br>
-<a class="btn" href="#">Download Resume</a>
+<a class="btn" href="https://drive.google.com/" target="_blank">Download Resume</a>
 </footer>
 
 <!-- CERT MODAL -->
@@ -221,33 +223,40 @@ footer{ text-align:center; padding:100px 10%; }
 
 <script>
 /* BACKGROUND ICONS */
-const icons=['<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>','<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'];
+const bgIcons=['<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>','<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'];
 for(let i=0;i<30;i++){
   const d=document.createElement('div');
-  d.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+  d.innerHTML=bgIcons[Math.floor(Math.random()*bgIcons.length)];
   const s=d.firstChild;
   s.style.left=Math.random()*100+'vw';
   s.style.animationDuration=15+Math.random()*25+'s';
   document.getElementById('bg-icons').appendChild(s);
 }
 
-/* HERO TEXT */
+/* SMOOTH SUBTITLE ROTATION */
 const roles=["AI SYSTEMS ENGINEER","BACKEND ARCHITECT","LINUX POWER USER","OPEN SOURCE BUILDER"];
-let ri=0,ci=0,del=false;
-const text=document.getElementById('dynamic-text');
-(function type(){
-  const cur=roles[ri];
-  if(!del){ text.textContent=cur.slice(0,++ci); if(ci===cur.length) setTimeout(()=>del=true,1200);}
-  else{ text.textContent=cur.slice(0,--ci); if(ci===0){ del=false; ri=(ri+1)%roles.length;}}
-  setTimeout(type,del?40:70);
-})();
+let idx=0;
+const subtitle=document.getElementById('dynamic-text');
+function rotateText(){
+  subtitle.style.opacity=0;
+  subtitle.style.transform='translateY(6px)';
+  setTimeout(()=>{
+    subtitle.textContent=roles[idx=(idx+1)%roles.length];
+    subtitle.style.opacity=1;
+    subtitle.style.transform='translateY(0)';
+  },400);
+}
+subtitle.textContent=roles[0];
+setInterval(rotateText,2400);
 
 /* CERT MODAL */
 const modal=document.getElementById('cert-modal');
 document.querySelectorAll('.cert').forEach(c=>{
-  c.onclick=()=>{document.getElementById('cert-title').textContent=c.dataset.title;
-  document.getElementById('cert-desc').textContent=c.dataset.desc;
-  modal.style.display='flex';};
+  c.onclick=()=>{
+    document.getElementById('cert-title').textContent=c.dataset.title;
+    document.getElementById('cert-desc').textContent=c.dataset.desc;
+    modal.style.display='flex';
+  };
 });
 function closeCert(){modal.style.display='none';}
 
@@ -261,30 +270,37 @@ renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
 scene.add(new THREE.AmbientLight(0xffffff,.5));
-const light=new THREE.PointLight(0x00ffff,1.5,50);
+const light=new THREE.PointLight(0xffffff,1.2,50);
 light.position.set(0,0,10);
 scene.add(light);
 
-function gradientTex(){
+/* FLAT GRADIENT TEXTURE */
+function flatGradient(){
   const c=document.createElement('canvas');c.width=c.height=256;
   const g=c.getContext('2d');
-  const grd=g.createRadialGradient(128,128,20,128,128,128);
+  const grd=g.createLinearGradient(0,0,256,256);
   grd.addColorStop(0,'#00ffd5');
-  grd.addColorStop(.6,'#7f00ff');
-  grd.addColorStop(1,'#020617');
-  g.fillStyle=grd;g.fillRect(0,0,256,256);
+  grd.addColorStop(1,'#7f00ff');
+  g.fillStyle=grd;
+  g.fillRect(0,0,256,256);
   return new THREE.CanvasTexture(c);
 }
-function labelSprite(t){
-  const c=document.createElement('canvas');const g=c.getContext('2d');
-  g.font='bold 36px Inter';const w=g.measureText(t).width;
-  c.width=w+40;c.height=64;
-  g.font='bold 36px Inter';g.fillStyle='#fff';
-  g.textAlign='center';g.textBaseline='middle';
-  g.shadowColor='#00ffd5';g.shadowBlur=20;
-  g.fillText(t,c.width/2,c.height/2);
-  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
-  s.scale.set(3.5,0.9,1);return s;
+
+/* TEXT INSIDE ORB */
+function orbLabel(text){
+  const c=document.createElement('canvas');
+  const g=c.getContext('2d');
+  g.font='bold 36px Inter';
+  const w=g.measureText(text).width;
+  c.width=w+40;c.height=70;
+  g.font='bold 36px Inter';
+  g.fillStyle='#020617';
+  g.textAlign='center';
+  g.textBaseline='middle';
+  g.fillText(text,c.width/2,c.height/2);
+  const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
+  sprite.scale.set(3.2,1,1);
+  return sprite;
 }
 
 const projects=[
@@ -294,14 +310,19 @@ const projects=[
 {name:'Disaster Quiz',link:'https://github.com/Indrudge/disasterquiz'}
 ];
 
-const tex=gradientTex(),orbs=[];
+const tex=flatGradient();
+const orbs=[];
 projects.forEach((p,i)=>{
-  const orb=new THREE.Mesh(new THREE.CircleGeometry(1.9,64),
-    new THREE.MeshStandardMaterial({map:tex,emissive:0x000000}));
+  const orb=new THREE.Mesh(
+    new THREE.CircleGeometry(1.9,64),
+    new THREE.MeshStandardMaterial({map:tex,roughness:.3,metalness:0})
+  );
   orb.position.x=(i-1.5)*5.5;
-  const lbl=labelSprite(p.name.toUpperCase());
-  lbl.position.y=2.8; orb.add(lbl);
-  orb.userData=p; scene.add(orb); orbs.push(orb);
+  const label=orbLabel(p.name.toUpperCase());
+  orb.add(label);
+  orb.userData=p;
+  scene.add(orb);
+  orbs.push(orb);
 });
 camera.position.z=10;
 
@@ -309,7 +330,7 @@ const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
 renderer.domElement.onclick=()=>{
   ray.setFromCamera(mouse,camera);
   const h=ray.intersectObjects(orbs);
-  if(h.length) window.open(h[0].object.userData.link,'_blank');
+  if(h.length)window.open(h[0].object.userData.link,'_blank');
 };
 renderer.domElement.onmousemove=e=>{
   const r=renderer.domElement.getBoundingClientRect();
