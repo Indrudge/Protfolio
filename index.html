@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+o9<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -237,6 +237,22 @@ scene.add(new THREE.AmbientLight(0x00ffff,.6));
 const light=new THREE.PointLight(0x00ffff,2,40);
 light.position.set(0,0,10);
 scene.add(light);
+
+/* FLOATING BACKGROUND ICONS */
+const bgIcons = [
+  '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>',
+  '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'
+];
+
+for (let i = 0; i < 30; i++) {
+  const d = document.createElement('div');
+  d.innerHTML = bgIcons[Math.floor(Math.random() * bgIcons.length)];
+  const s = d.firstChild;
+  s.style.left = Math.random() * 100 + 'vw';
+  s.style.animationDuration = 15 + Math.random() * 25 + 's';
+  s.style.animationDelay = Math.random() * 10 + 's';
+  document.getElementById('bg-icons').appendChild(s);
+}
 
 /* TEXT SPRITE HELPER */
 function createTextSprite(text){
