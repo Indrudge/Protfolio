@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indrudge | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
 <style>
@@ -39,9 +39,9 @@ nav a:hover{color:#00ffd5;}
   text-align:center;
 }
 .hero h1{
-  font-family:'Orbitron',sans-serif;
   font-size:56px;
-  letter-spacing:8px;
+  font-family:'Orbitron',sans-serif;
+  letter-spacing:6px;
   background:linear-gradient(120deg,#00ffd5,#7f00ff,#00ffd5);
   background-size:300% 300%;
   -webkit-background-clip:text;
@@ -75,6 +75,51 @@ h2{font-size:36px;margin-bottom:40px;}
 @keyframes floatUp{
   from{transform:translateY(110vh) rotate(0deg);}
   to{transform:translateY(-20vh) rotate(360deg);}
+}
+
+/* EDUCATION */
+.timeline{position:relative;}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  width:2px;height:100%;
+  background:rgba(255,255,255,.15);
+}
+.event{
+  width:45%;
+  padding:24px;
+  margin:30px 0;
+  background:rgba(255,255,255,.04);
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 35px rgba(0,255,213,.15);
+}
+.event.left{position:relative;left:0;}
+.event.right{position:relative;left:55%;}
+.event span{color:#00ffd5;font-weight:600;}
+
+/* PROJECTS */
+#orbs{width:100%;height:420px;}
+
+/* CERTS */
+.certs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.cert{
+  padding:36px;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(127,0,255,.25),rgba(0,255,213,.25));
+  backdrop-filter:blur(14px);
+  box-shadow:0 0 50px rgba(127,0,255,.25);
+  cursor:pointer;
+  transition:.3s;
+}
+.cert:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 80px rgba(0,255,213,.45);
 }
 
 /* FOOTER */
@@ -128,6 +173,29 @@ footer{text-align:center;padding:100px 10%;}
   </div>
 </div>
 
+<section id="education">
+<h2>Education</h2>
+<div class="timeline">
+  <div class="event left"><span>2019</span><br><strong>10th (ICSE)</strong><br>Cambrian Hall School</div>
+  <div class="event right"><span>2021</span><br><strong>12th (ICSE)</strong><br>Cambrian Hall School</div>
+  <div class="event left"><span>2025</span><br><strong>BCA (AI / ML)</strong><br>UPES</div>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div id="orbs"></div>
+</section>
+
+<section id="certs">
+<h2>Top Certifications</h2>
+<div class="certs">
+  <div class="cert" data-title="Certification One" data-desc="AI & ML Fundamentals">Certification One</div>
+  <div class="cert" data-title="Certification Two" data-desc="Backend Systems & Microservices">Certification Two</div>
+  <div class="cert" data-title="Certification Three" data-desc="Linux & Systems Engineering">Certification Three</div>
+</div>
+</section>
+
 <footer id="contact">
 <h2>Connect</h2>
 <div class="socials">
@@ -157,6 +225,15 @@ footer{text-align:center;padding:100px 10%;}
 <a class="btn" href="https://drive.google.com/" target="_blank">Download Resume</a>
 </footer>
 
+<!-- CERT MODAL -->
+<div id="cert-modal" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,.85);align-items:center;justify-content:center;z-index:200;">
+  <div style="background:#0f172a;padding:40px;border-radius:24px;box-shadow:0 0 60px rgba(0,255,213,.4);text-align:center;">
+    <h3 id="cert-title" style="color:#00ffd5"></h3>
+    <p id="cert-desc"></p><br>
+    <button class="btn" onclick="closeCert()">Close</button>
+  </div>
+</div>
+
 <script>
 /* BACKGROUND ICONS */
 const bgIcons=['<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>','<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'];
@@ -169,18 +246,116 @@ for(let i=0;i<30;i++){
   document.getElementById('bg-icons').appendChild(s);
 }
 
-/* SMOOTH SUBTITLE */
+/* SMOOTH SUBTITLE ROTATION */
 const roles=["AI SYSTEMS ENGINEER","BACKEND ARCHITECT","LINUX POWER USER","OPEN SOURCE BUILDER"];
-let i=0;
+let idx=0;
 const subtitle=document.getElementById('dynamic-text');
-subtitle.textContent=roles[0];
-setInterval(()=>{
+function rotateText(){
   subtitle.style.opacity=0;
+  subtitle.style.transform='translateY(6px)';
   setTimeout(()=>{
-    subtitle.textContent=roles[i=(i+1)%roles.length];
+    subtitle.textContent=roles[idx=(idx+1)%roles.length];
     subtitle.style.opacity=1;
+    subtitle.style.transform='translateY(0)';
   },400);
-},2400);
+}
+subtitle.textContent=roles[0];
+setInterval(rotateText,2400);
+
+/* CERT MODAL */
+const modal=document.getElementById('cert-modal');
+document.querySelectorAll('.cert').forEach(c=>{
+  c.onclick=()=>{
+    document.getElementById('cert-title').textContent=c.dataset.title;
+    document.getElementById('cert-desc').textContent=c.dataset.desc;
+    modal.style.display='flex';
+  };
+});
+function closeCert(){modal.style.display='none';}
+
+/* THREE.JS ORBS */
+const container=document.getElementById('orbs');
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(60,container.clientWidth/420,0.1,100);
+const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
+renderer.setSize(container.clientWidth,420);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff,.5));
+const light=new THREE.PointLight(0xffffff,1.2,50);
+light.position.set(0,0,10);
+scene.add(light);
+
+/* FLAT GRADIENT TEXTURE */
+function flatGradient(){
+  const c=document.createElement('canvas');c.width=c.height=256;
+  const g=c.getContext('2d');
+  const grd=g.createLinearGradient(0,0,256,256);
+  grd.addColorStop(0,'#00ffd5');
+  grd.addColorStop(1,'#7f00ff');
+  g.fillStyle=grd;
+  g.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c);
+}
+
+/* TEXT INSIDE ORB */
+function orbLabel(text){
+  const c=document.createElement('canvas');
+  const g=c.getContext('2d');
+  g.font='bold 36px Inter';
+  const w=g.measureText(text).width;
+  c.width=w+40;c.height=70;
+  g.font='bold 36px Inter';
+  g.fillStyle='#020617';
+  g.textAlign='center';
+  g.textBaseline='middle';
+  g.fillText(text,c.width/2,c.height/2);
+  const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
+  sprite.scale.set(3.2,1,1);
+  return sprite;
+}
+
+const projects=[
+{name:'PlagRemover',link:'https://github.com/Indrudge/plagremover'},
+{name:'Major 1',link:'https://github.com/Indrudge/Major1'},
+{name:'Major 2',link:'https://github.com/Indrudge/Major2'},
+{name:'Disaster Quiz',link:'https://github.com/Indrudge/disasterquiz'}
+];
+
+const tex=flatGradient();
+const orbs=[];
+projects.forEach((p,i)=>{
+  const orb=new THREE.Mesh(
+    new THREE.CircleGeometry(1.9,64),
+    new THREE.MeshStandardMaterial({map:tex,roughness:.3,metalness:0})
+  );
+  orb.position.x=(i-1.5)*5.5;
+  const label=orbLabel(p.name.toUpperCase());
+  orb.add(label);
+  orb.userData=p;
+  scene.add(orb);
+  orbs.push(orb);
+});
+camera.position.z=10;
+
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+renderer.domElement.onclick=()=>{
+  ray.setFromCamera(mouse,camera);
+  const h=ray.intersectObjects(orbs);
+  if(h.length)window.open(h[0].object.userData.link,'_blank');
+};
+renderer.domElement.onmousemove=e=>{
+  const r=renderer.domElement.getBoundingClientRect();
+  mouse.x=((e.clientX-r.left)/r.width)*2-1;
+  mouse.y=-((e.clientY-r.top)/r.height)*2+1;
+};
+
+(function animate(){
+  requestAnimationFrame(animate);
+  orbs.forEach((o,i)=>o.position.y=Math.sin(Date.now()*0.002+i)*.45);
+  renderer.render(scene,camera);
+})();
 </script>
 
 </body>
