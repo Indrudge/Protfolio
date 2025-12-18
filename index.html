@@ -1,378 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indrudge | Portfolio</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">  <!-- Three.js -->  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: radial-gradient(circle at top, #0b1020, #020617); color: #e5e7eb; overflow-x: hidden; }
 
-<!-- SEO -->
-<meta name="description" content="Indrudge Panwar – AI Systems Engineer, Backend Architect, Linux Power User">
-<meta name="keywords" content="Indrudge Panwar, AI Engineer, Backend Developer, Portfolio">
-<meta name="author" content="Indrudge Panwar">
+    /* ===== APPLE-LIKE NAVBAR ===== */
+    nav {
+      position: fixed; top: 0; width: 100%; height: 64px;
+      backdrop-filter: blur(18px) saturate(180%);
+      background: rgba(10, 15, 30, 0.55);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    nav ul { display: flex; gap: 44px; list-style: none; }
+    nav a { color: #e5e7eb; text-decoration: none; font-weight: 500; letter-spacing: .4px; }
+    nav a:hover { color: #00ffd5; }
 
-<!-- OpenGraph -->
-<meta property="og:title" content="Indrudge Panwar | Portfolio">
-<meta property="og:description" content="Building scalable AI-driven systems.">
-<meta property="og:type" content="website">
+    /* ===== HOLOGRAM HERO ===== */
+    .hero {
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative;
+    }
+    .hero h1 {
+      font-size: 80px; font-weight: 800; letter-spacing: 8px;
+      background: linear-gradient(120deg, #00ffd5, #7f00ff, #00ffd5);
+      background-size: 300% 300%;
+      -webkit-background-clip: text; color: transparent;
+      animation: holoShift 6s linear infinite;
+      text-shadow: 0 0 40px rgba(0,255,213,.35);
+    }
+    @keyframes holoShift {
+      from { background-position: 0% 50%; }
+      to { background-position: 200% 50%; }
+    }
 
-<title>Indrudge Panwar | Portfolio</title>
+    section { padding: 120px 10%; }
+    h2 { font-size: 36px; margin-bottom: 40px; }
 
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    /* ===== EDUCATION TIMELINE ===== */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: rgba(255,255,255,.15);
+    }
+    .event {
+      width: 45%; padding: 24px; background: rgba(255,255,255,.04);
+      border-radius: 16px; margin: 30px 0; position: relative;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 40px rgba(0,255,213,.08);
+    }
+    .event.left { left: 0; }
+    .event.right { left: 55%; }
+    .event span { color: #00ffd5; font-weight: 600; }
 
-<style>
-:root {
-  --bg: #0d1117;
-  --card: #161b22;
-  --text: #c9d1d9;
-  --muted: #8b949e;
-  --accent: #58a6ff;
-}
+    /* ===== 3D PROJECT ORBS ===== */
+    #orbs { height: 420px; }
 
-.light {
-  --bg: #f5f7fa;
-  --card: #ffffff;
-  --text: #1f2328;
-  --muted: #57606a;
-  --accent: #0969da;
-}
+    /* ===== CERTIFICATIONS ===== */
+    .certs { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+    .cert {
+      padding: 36px; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(127,0,255,.25), rgba(0,255,213,.25));
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 50px rgba(127,0,255,.25);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .cert:hover { transform: translateY(-10px); box-shadow: 0 0 80px rgba(0,255,213,.45); }
 
-* { box-sizing: border-box; scroll-behavior: smooth; }
+    /* ===== SOCIAL ICONS (SVG) ===== */
+    .socials { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
+    .socials svg {
+      width: 42px; height: 42px; fill: #9ca3af;
+      transition: all .3s ease;
+      filter: drop-shadow(0 0 0 transparent);
+    }
+    .socials svg:hover {
+      fill: #00ffd5;
+      filter: drop-shadow(0 0 12px #00ffd5) drop-shadow(0 0 24px #7f00ff);
+      transform: scale(1.15);
+    }
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background .3s, color .3s;
-}
-
-/* ---------- NAV ---------- */
-nav {
-  position: sticky;
-  top: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #21262d;
-  z-index: 100;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  list-style: none;
-  padding: 15px;
-  margin: 0;
-}
-
-nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover { color: var(--accent); }
-
-/* ---------- HERO ---------- */
-header {
-  min-height: 95vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.terminal {
-  background: var(--card);
-  border-radius: 10px;
-  padding: 30px;
-  width: 90%;
-  max-width: 900px;
-  font-family: 'JetBrains Mono', monospace;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
-}
-
-.prompt { color: var(--accent); }
-
-/* ---------- SECTIONS ---------- */
-section { padding: 80px 20px; }
-.container { max-width: 1100px; margin: auto; }
-
-h2 { text-align: center; margin-bottom: 50px; }
-
-/* ---------- CARDS ---------- */
-.card {
-  background: var(--card);
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0,0,0,.4);
-}
-
-/* ---------- STATS ---------- */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 20px;
-  text-align: center;
-}
-
-.stat h3 {
-  font-size: 2.2rem;
-  color: var(--accent);
-}
-
-/* ---------- SKILLS ---------- */
-.skill { margin-bottom: 15px; }
-.bar {
-  background: #21262d;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.bar span {
-  display: block;
-  height: 10px;
-  background: var(--accent);
-  width: 0;
-  animation: fill 1.5s forwards;
-}
-
-/* ---------- PROJECTS ---------- */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 25px;
-}
-
-.project { cursor: pointer; transition: transform .3s; }
-.project:hover { transform: translateY(-8px); }
-
-/* ---------- MODAL ---------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: var(--card);
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 600px;
-}
-
-.close { cursor: pointer; color: var(--accent); }
-
-/* ---------- EDUCATION TIMELINE ---------- */
-.timeline {
-  border-left: 3px solid var(--accent);
-  padding-left: 30px;
-}
-
-.timeline-item {
-  margin-bottom: 35px;
-  position: relative;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -11px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-.timeline-item h3 {
-  margin-bottom: 5px;
-}
-
-/* ---------- CERTIFICATES ---------- */
-.certs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.certs .card {
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.certs .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(88,166,255,0.25);
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-  text-align: center;
-  padding: 30px;
-  border-top: 1px solid #21262d;
-  color: var(--muted);
-}
-
-/* ---------- ANIM ---------- */
-@keyframes fill { to { width: var(--level); } }
-</style>
-</head>
-
-<body>
-
-<nav>
+    footer { text-align: center; padding: 100px 10%; }
+    .btn {
+      display: inline-block; padding: 16px 36px; border-radius: 40px;
+      background: linear-gradient(135deg, #00ffd5, #7f00ff);
+      color: #020617; font-weight: 600; text-decoration: none;
+      box-shadow: 0 0 40px rgba(0,255,213,.4);
+    }
+  </style></head>
+<body><nav>
   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#stats">Stats</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#education">Education</a></li>
-    <li><a href="#certificates">Certificates</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><button onclick="toggleTheme()">🌓</button></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-</nav>
-
-<header id="about">
-  <div class="terminal">
-    <p><span class="prompt">$</span> whoami</p>
-    <p>Indrudge Panwar</p>
-    <p><span class="prompt">$</span> uname -a</p>
-    <p>AI Systems Engineer | Backend Architect | Linux Power User</p>
-    <p><span class="prompt">$</span> mission</p>
-    <p>Build systems that scale. Write code that survives.</p>
-    <a href="resume.pdf" download style="color:var(--accent)">⬇ Download Resume</a>
+</nav><div class="hero">
+  <h1>INDRUDGE PANWAR</h1>
+</div><section id="education">
+  <h2>Education</h2>
+  <div class="timeline">
+    <div class="event left"><span>2019</span><br>10th Standard</div>
+    <div class="event right"><span>2021</span><br>12th Standard</div>
+    <div class="event left"><span>2025</span><br>Graduation</div>
   </div>
-</header>
-
-<section id="stats">
-  <div class="container stats">
-    <div class="card stat"><h3 data-count="15">0</h3><p>Projects</p></div>
-    <div class="card stat"><h3 data-count="3">0</h3><p>Years Coding</p></div>
-    <div class="card stat"><h3 data-count="10">0</h3><p>Technologies</p></div>
+</section><section id="projects">
+  <h2>Projects</h2>
+  <div id="orbs"></div>
+</section><section id="certs">
+  <h2>Top Certifications</h2>
+  <div class="certs">
+    <div class="cert">Certification One</div>
+    <div class="cert">Certification Two</div>
+    <div class="cert">Certification Three</div>
   </div>
-</section>
+</section><footer id="contact">
+  <h2>Connect</h2>  <!-- SVG ICONS -->  <div class="socials">
+    <!-- GitHub -->
+    <a href="https://github.com/Indrudge" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.39-3.88-1.39-.53-1.36-1.29-1.72-1.29-1.72-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.7 1.27 3.36.97.1-.75.4-1.27.72-1.56-2.56-.3-5.26-1.29-5.26-5.75 0-1.27.45-2.31 1.19-3.13-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.2.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.51 3.17-1.2 3.17-1.2.64 1.65.24 2.87.12 3.17.74.82 1.18 1.86 1.18 3.13 0 4.47-2.7 5.45-5.28 5.74.41.36.78 1.08.78 2.18v3.24c0 .31.21.68.8.56 4.56-1.53 7.85-5.86 7.85-10.96C23.5 5.74 18.27.5 12 .5z"/></svg>
+    </a><!-- LinkedIn -->
+<a href="https://linkedin.com" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.42 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2.03-.04-4.64-2.83-4.64-2.83 0-3.27 2.2-3.27 4.5V24H8z"/></svg>
+</a>
 
-<section id="skills">
-  <div class="container">
-    <h2>Skills</h2>
-    <div class="card skill">
-      Python / AI
-      <div class="bar"><span style="--level:90%"></span></div>
-    </div>
-    <div class="card skill">
-      Backend Systems
-      <div class="bar"><span style="--level:85%"></span></div>
-    </div>
-    <div class="card skill">
-      Linux / DevOps
-      <div class="bar"><span style="--level:80%"></span></div>
-    </div>
-  </div>
-</section>
+<!-- C Language -->
+<svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 3.2l7 3.3v6.9l-7 3.3-7-3.3V8.5l7-3.3zm1.8 3.7c-2.3 0-4.1 1.9-4.1 4.2s1.8 4.2 4.1 4.2c1.2 0 2.3-.5 3.1-1.3l-1.3-1.3c-.4.4-1 .7-1.8.7-1.3 0-2.3-1.1-2.3-2.3s1-2.3 2.3-2.3c.7 0 1.4.3 1.8.7l1.3-1.3c-.8-.8-1.9-1.3-3.1-1.3z"/></svg>
 
-<section id="education">
-  <div class="container">
-    <h2>Education</h2>
+  </div><br><br> <a class="btn" href="https://drive.google.com" target="_blank">Download Resume</a>
 
-    <div class="card timeline">
-      <div class="timeline-item">
-        <h3>Bachelor of Computer Applications (BCA)</h3>
-        <p><strong>Status:</strong> Final Year</p>
-        <p><strong>Focus Areas:</strong> Artificial Intelligence, Backend Systems, Software Engineering</p>
-        <p><strong>Description:</strong>  
-          Strong foundation in computer science fundamentals including data structures, databases,
-          operating systems, networking, and AI-driven application development.
-        </p>
-      </div>
+</footer><script>
+  /* ===== THREE.JS PROJECT ORBS ===== */
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 420, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth * 0.8, 420);
+  document.getElementById('orbs').appendChild(renderer.domElement);
 
-      <div class="timeline-item">
-        <h3>Senior Secondary Education</h3>
-        <p><strong>Stream:</strong> Science / Computer Applications</p>
-        <p>Developed early interest in programming, systems, and problem solving.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  const light = new THREE.PointLight(0x00ffd5, 2, 100);
+  light.position.set(0, 0, 10);
+  scene.add(light);
 
-<section id="certificates">
-  <div class="container">
-    <h2>Certificates & Credentials</h2>
+  const spheres = [];
+  for (let i = 0; i < 4; i++) {
+    const geo = new THREE.SphereGeometry(1, 64, 64);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x7f00ff,
+      emissive: 0x00ffd5,
+      emissiveIntensity: 0.4,
+      metalness: 0.8,
+      roughness: 0.2
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.x = (i - 1.5) * 3;
+    scene.add(mesh);
+    spheres.push(mesh);
+  }
 
-    <div class="certs">
-      <div class="card">
-        <h4>Machine Learning Fundamentals</h4>
-        <p>Covered supervised & unsupervised learning, model evaluation, and real-world ML use cases.</p>
-      </div>
+  camera.position.z = 8;
 
-      <div class="card">
-        <h4>Python for Data Science</h4>
-        <p>Hands-on experience with data analysis, NumPy, Pandas, and ML pipelines.</p>
-      </div>
-
-      <div class="card">
-        <h4>Linux System Administration</h4>
-        <p>System management, shell scripting, process control, and server fundamentals.</p>
-      </div>
-
-      <div class="card">
-        <h4>Backend Development & APIs</h4>
-        <p>RESTful API design, backend architecture, and database integration.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="container">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card project" onclick="openModal('Plagiarism Remover','LLM-powered plagiarism detection system.')">
-        Plagiarism Remover & AI Detector
-      </div>
-      <div class="card project" onclick="openModal('Inventory AI','Demand forecasting using ML models.')">
-        Inventory Forecasting
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">✕</span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalDesc"></p>
-  </div>
-</div>
-
-<footer>
-  © 2025 Indrudge Panwar · GitHub Pages
-</footer>
-
-<script>
-/* Theme */
-function toggleTheme() {
-  document.body.classList.toggle('light');
-  localStorage.theme = document.body.classList.contains('light') ? 'light' : '';
-}
-if(localStorage.theme === 'light') document.body.classList.add('light');
-
-/* Modal */
-function openModal(t,d){
-  modal.style.display='flex';
-  modalTitle.textContent=t;
-  modalDesc.textContent=d;
-}
-function closeModal(){ modal.style.display='none'; }
-
-/* Counters */
-document.querySelectorAll('[data-count]').forEach(el=>{
-  let target=+el.dataset.count, i=0;
-  let timer=setInterval(()=>{
-    el.textContent=++i;
-    if(i===target) clearInterval(timer);
-  },80);
-});
-</script>
-
-</body>
+  function animate() {
+    requestAnimationFrame(animate);
+    spheres.forEach(s => {
+      s.rotation.y += 0.01;
+      s.rotation.x += 0.005;
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+</script></body>
 </html>
