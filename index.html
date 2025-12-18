@@ -84,23 +84,7 @@ h2 { font-size: 36px; margin-bottom: 40px; }
 .event span { color:#00ffd5; font-weight:600; }
 
 /* PROJECTS */
-#orbs-wrapper { position: relative; width: 100%; height: 420px; }
 #orbs { width:100%; height:420px; }
-
-/* ORB LABEL */
-.orb-label {
-  position: absolute;
-  color: #00ffd5;
-  font-size: 13px;
-  letter-spacing: 2px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .2s;
-  text-shadow: 0 0 12px rgba(0,255,213,.9);
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-  z-index: 10;
-}
 
 /* FLOATING BACKGROUND */
 #bg-icons svg {
@@ -202,50 +186,37 @@ footer {
 
 <section id="projects">
 <h2>Projects</h2>
-<div id="orbs-wrapper">
-  <div id="orbs"></div>
-  <div id="orb-label" class="orb-label"></div>
-</div>
+<div id="orbs"></div>
 </section>
 
 <section id="certs">
 <h2>Top Certifications</h2>
 <div class="certs">
-  <div class="cert" data-title="Certification One" data-desc="Issued by XYZ • Focused on AI & ML fundamentals">Certification One</div>
-  <div class="cert" data-title="Certification Two" data-desc="Advanced Backend Systems & Microservices">Certification Two</div>
-  <div class="cert" data-title="Certification Three" data-desc="Linux Internals & Systems Engineering">Certification Three</div>
+  <div class="cert">Certification One</div>
+  <div class="cert">Certification Two</div>
+  <div class="cert">Certification Three</div>
 </div>
 </section>
 
 <footer id="contact">
 <h2>Connect</h2>
 <div class="socials">
-<a href="https://github.com/Indrudge" target="_blank">
-<svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.7.2 2.9.1 3.2.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.5 5.7 18.3.5 12 .5z"/></svg>
-</a>
+  <a href="https://github.com/Indrudge" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.7.2 2.9.1 3.2.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.5 5.7 18.3.5 12 .5z"/></svg>
+  </a>
 
-<a href="https://linkedin.com" target="_blank">
-<svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.7-1.3 2.3-2.6 4.7-2.6C22.4 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.3 2.2-3.3 4.5V24H8z"/></svg>
-</a>
+  <a href="https://linkedin.com" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.7-1.3 2.3-2.6 4.7-2.6C22.4 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.3 2.2-3.3 4.5V24H8z"/></svg>
+  </a>
 
-<a href="https://x.com" target="_blank">
-<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
-</a>
+  <a href="https://x.com" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
+  </a>
 </div>
 
 <br><br>
 <a class="btn" href="https://drive.google.com" target="_blank">Download Resume</a>
 </footer>
-
-<!-- CERT MODAL -->
-<div id="cert-modal" style="position:fixed;inset:0;background:rgba(2,6,23,.85);display:none;align-items:center;justify-content:center;z-index:200;">
-  <div style="background:rgba(15,23,42,.95);padding:40px;border-radius:24px;max-width:420px;text-align:center;box-shadow:0 0 60px rgba(0,255,213,.4);">
-    <h3 id="cert-title" style="margin-bottom:12px;color:#00ffd5"></h3>
-    <p id="cert-desc" style="opacity:.85"></p>
-    <br>
-    <button onclick="closeCert()" class="btn">Close</button>
-  </div>
-</div>
 
 <script>
 /* HERO TEXT */
@@ -255,9 +226,6 @@ setInterval(()=>{el.style.opacity=0;setTimeout(()=>{r=(r+1)%roles.length;el.text
 
 /* ORBS */
 const container=document.getElementById('orbs');
-const wrapper=document.getElementById('orbs-wrapper');
-const label=document.getElementById('orb-label');
-
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,container.clientWidth/420,0.1,100);
 const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
@@ -269,6 +237,30 @@ scene.add(new THREE.AmbientLight(0x00ffff,.6));
 const light=new THREE.PointLight(0x00ffff,2,40);
 light.position.set(0,0,10);
 scene.add(light);
+
+/* TEXT SPRITE HELPER */
+function createTextSprite(text){
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d');
+  ctx.font='bold 48px Inter';
+  const w=ctx.measureText(text).width;
+  canvas.width=w+40;
+  canvas.height=80;
+
+  ctx.font='bold 48px Inter';
+  ctx.fillStyle='#00ffd5';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.shadowColor='#00ffd5';
+  ctx.shadowBlur=20;
+  ctx.fillText(text,canvas.width/2,canvas.height/2);
+
+  const texture=new THREE.CanvasTexture(canvas);
+  const material=new THREE.SpriteMaterial({map:texture,transparent:true});
+  const sprite=new THREE.Sprite(material);
+  sprite.scale.set(3.5,0.9,1);
+  return sprite;
+}
 
 const projects=[
 {name:'PlagRemover',link:'https://github.com/Indrudge/plagremover'},
@@ -285,48 +277,29 @@ projects.forEach((p,i)=>{
     emissive:0x00ffff,
     emissiveIntensity:.8
   });
-  const o=new THREE.Mesh(geo,mat);
-  o.position.x=(i-1.5)*5.5;
-  o.userData=p;
-  scene.add(o);
-  orbs.push(o);
+  const orb=new THREE.Mesh(geo,mat);
+  orb.position.x=(i-1.5)*5.5;
+
+  const label=createTextSprite(p.name.toUpperCase());
+  label.position.y=2.6;
+  orb.add(label);
+
+  orb.userData=p;
+  scene.add(orb);
+  orbs.push(orb);
 });
 camera.position.z=10;
 
-const ray=new THREE.Raycaster();
-const mouse=new THREE.Vector2();
-
-renderer.domElement.addEventListener('mousemove',e=>{
-  const rect=renderer.domElement.getBoundingClientRect();
-  mouse.x=((e.clientX-rect.left)/rect.width)*2-1;
-  mouse.y=-((e.clientY-rect.top)/rect.height)*2+1;
-
-  ray.setFromCamera(mouse,camera);
-  const hit=ray.intersectObjects(orbs);
-
-  orbs.forEach(o=>o.material.emissiveIntensity=.8);
-
-  if(hit.length){
-    const orb=hit[0].object;
-    orb.material.emissiveIntensity=1.6;
-
-    const pos=orb.position.clone().project(camera);
-    label.style.left=((pos.x+1)/2)*wrapper.clientWidth+'px';
-    label.style.top=((1-pos.y)/2)*420-35+'px';
-    label.textContent=orb.userData.name.toUpperCase();
-    label.style.opacity=1;
-
-    document.body.style.cursor='pointer';
-  } else {
-    label.style.opacity=0;
-    document.body.style.cursor='default';
-  }
-});
-
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
 renderer.domElement.addEventListener('click',()=>{
   ray.setFromCamera(mouse,camera);
-  const hit=ray.intersectObjects(orbs);
-  if(hit.length) window.open(hit[0].object.userData.link,'_blank');
+  const h=ray.intersectObjects(orbs);
+  if(h.length) window.open(h[0].object.userData.link,'_blank');
+});
+renderer.domElement.addEventListener('mousemove',e=>{
+  const r=renderer.domElement.getBoundingClientRect();
+  mouse.x=((e.clientX-r.left)/r.width)*2-1;
+  mouse.y=-((e.clientY-r.top)/r.height)*2+1;
 });
 
 function animate(){
@@ -335,20 +308,6 @@ function animate(){
   renderer.render(scene,camera);
 }
 animate();
-
-/* CERT MODAL */
-const modal=document.getElementById('cert-modal');
-const ct=document.getElementById('cert-title');
-const cd=document.getElementById('cert-desc');
-
-document.querySelectorAll('.cert').forEach(c=>{
-  c.addEventListener('click',()=>{
-    ct.textContent=c.dataset.title;
-    cd.textContent=c.dataset.desc;
-    modal.style.display='flex';
-  });
-});
-function closeCert(){ modal.style.display='none'; }
 </script>
 
 </body>
