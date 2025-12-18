@@ -25,20 +25,26 @@
       text-align: center; position: relative;
     }
     .hero h1 {
-      font-size: 80px; font-weight: 800; letter-spacing: 8px;
+      font-size: 64px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      margin-bottom: 8px;
       background: linear-gradient(120deg, #00ffd5, #7f00ff, #00ffd5);
       background-size: 300% 300%;
-      -webkit-background-clip: text; color: transparent;
+      -webkit-background-clip: text;
+      color: transparent;
       animation: holoShift 6s linear infinite;
       text-shadow: 0 0 40px rgba(0,255,213,.35);
     }
 
     .hero p {
-      margin-top: 18px;
-      font-size: 18px;
-      letter-spacing: 4px;
-      color: rgba(229,231,235,0.75);
+      margin-top: 12px;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: rgba(229,231,235,0.8);
       text-transform: uppercase;
+      min-height: 22px; /* ensures space for dynamic text */
+      transition: opacity .3s ease;
     }
     @keyframes holoShift {
       from { background-position: 0% 50%; }
@@ -149,9 +155,10 @@
 </section><section id="certs">
   <h2>Top Certifications</h2>
   <div class="certs">
-    <div class="cert">Certification One</div>
-    <div class="cert">Certification Two</div>
-    <div class="cert">Certification Three</div>
+    <div class="cert" onclick="alert('Certificate 1: Issuer, Year, Skills Covered')">
+    <div class="cert" onclick="alert('Certificate 1: Issuer, Year, Skills Covered')">Certification One</div>
+    <div class="cert" onclick="alert('Certificate 2: Issuer, Year, Skills Covered')">Certification Two</div>
+    <div class="cert" onclick="alert('Certificate 3: Issuer, Year, Skills Covered')">Certification Three</div>
   </div>
 </section><footer id="contact">
   <h2>Connect</h2>  <!-- SVG ICONS -->  <div class="socials">
@@ -193,9 +200,13 @@
   /* ===== THREE.JS PROJECT ORBS ===== */
   /* ===== THREE.JS PROJECT ORBS ===== */
   const scene = new THREE.Scene();
+
+  /* ensure canvas is visible */
+  document.getElementById('orbs').style.display = 'block';();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 420, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth * 0.8, 420);
+  renderer.setSize(window.innerWidth * 0.9, 420);
+  renderer.setPixelRatio(window.devicePixelRatio);
   document.getElementById('orbs').appendChild(renderer.domElement);
 
   const light = new THREE.PointLight(0x00ffd5, 2, 100);
@@ -263,12 +274,14 @@ const links = [
     "AI SYSTEMS ENGINEER",
     "BACKEND ARCHITECT",
     "LINUX POWER USER",
-    "OPEN SOURCE BUILDER",
-    "THREE.JS ENTHUSIAST"
+    "AI / ML DEVELOPER",
+    "OPEN SOURCE BUILDER"
   ];
 
   let roleIndex = 0;
   const el = document.getElementById('dynamic-text');
+el.textContent = roles[0];
+el.textContent = roles[0]; /* initialize immediately */
 
   setInterval(() => {
     el.style.opacity = 0;
