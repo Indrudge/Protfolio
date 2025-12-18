@@ -1,4 +1,4 @@
-o9<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -10,6 +10,7 @@ o9<!DOCTYPE html>
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
 body {
   background: radial-gradient(circle at top, #0b1020, #020617);
   color: #e5e7eb;
@@ -18,10 +19,15 @@ body {
 
 /* NAVBAR */
 nav {
-  position: fixed; top: 0; width: 100%; height: 64px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
   backdrop-filter: blur(18px);
   background: rgba(10,15,30,.55);
-  display: flex; justify-content: center; align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 100;
 }
 nav ul { list-style: none; display: flex; gap: 44px; }
@@ -31,7 +37,9 @@ nav a:hover { color: #00ffd5; }
 /* HERO */
 .hero {
   height: 100vh;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 .hero h1 {
@@ -49,7 +57,6 @@ nav a:hover { color: #00ffd5; }
   letter-spacing: 3px;
   opacity: .8;
   min-height: 20px;
-  transition: opacity .3s;
 }
 @keyframes holo {
   from { background-position: 0% }
@@ -89,7 +96,8 @@ h2 { font-size: 36px; margin-bottom: 40px; }
 /* FLOATING BACKGROUND */
 #bg-icons svg {
   position:absolute;
-  width:22px; height:22px;
+  width:22px;
+  height:22px;
   opacity:.12;
   animation: floatUp linear infinite;
   filter: drop-shadow(0 0 6px rgba(0,255,213,.4));
@@ -128,7 +136,8 @@ h2 { font-size: 36px; margin-bottom: 40px; }
   margin-top:40px;
 }
 .socials svg {
-  width:42px; height:42px;
+  width:42px;
+  height:42px;
   fill:#9ca3af;
   transition:.3s;
 }
@@ -192,26 +201,26 @@ footer {
 <section id="certs">
 <h2>Top Certifications</h2>
 <div class="certs">
-  <div class="cert">Certification One</div>
-  <div class="cert">Certification Two</div>
-  <div class="cert">Certification Three</div>
+<div class="cert">Certification One</div>
+<div class="cert">Certification Two</div>
+<div class="cert">Certification Three</div>
 </div>
 </section>
 
 <footer id="contact">
 <h2>Connect</h2>
 <div class="socials">
-  <a href="https://github.com/Indrudge" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.7.2 2.9.1 3.2.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.5 5.7 18.3.5 12 .5z"/></svg>
-  </a>
+<a href="https://github.com/Indrudge" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6V20c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.2.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.7.2 2.9.1 3.2.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.5 5.7 18.3.5 12 .5z"/></svg>
+</a>
 
-  <a href="https://linkedin.com" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.7-1.3 2.3-2.6 4.7-2.6C22.4 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.3 2.2-3.3 4.5V24H8z"/></svg>
-  </a>
+<a href="https://linkedin.com" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.7-1.3 2.3-2.6 4.7-2.6C22.4 7.6 24 10.3 24 14.4V24h-5v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.3 2.2-3.3 4.5V24H8z"/></svg>
+</a>
 
-  <a href="https://x.com" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
-  </a>
+<a href="https://x.com" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.8l-5.3-6.5L5.5 22H2.4l7.7-8.8L1 2h6.9l4.8 6 5.2-6z"/></svg>
+</a>
 </div>
 
 <br><br>
@@ -219,12 +228,27 @@ footer {
 </footer>
 
 <script>
+/* FLOATING BACKGROUND ICONS */
+const bgIcons=[
+'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>',
+'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'
+];
+for(let i=0;i<30;i++){
+  const d=document.createElement('div');
+  d.innerHTML=bgIcons[Math.floor(Math.random()*bgIcons.length)];
+  const s=d.firstChild;
+  s.style.left=Math.random()*100+'vw';
+  s.style.animationDuration=15+Math.random()*25+'s';
+  document.getElementById('bg-icons').appendChild(s);
+}
+
 /* HERO TEXT */
 const roles=["AI SYSTEMS ENGINEER","BACKEND ARCHITECT","LINUX POWER USER","OPEN SOURCE BUILDER"];
-let r=0; const el=document.getElementById('dynamic-text'); el.textContent=roles[0];
+let r=0;const el=document.getElementById('dynamic-text');
+el.textContent=roles[0];
 setInterval(()=>{el.style.opacity=0;setTimeout(()=>{r=(r+1)%roles.length;el.textContent=roles[r];el.style.opacity=1;},300)},2200);
 
-/* ORBS */
+/* THREE.JS ORBS */
 const container=document.getElementById('orbs');
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,container.clientWidth/420,0.1,100);
@@ -233,49 +257,42 @@ renderer.setSize(container.clientWidth,420);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0x00ffff,.6));
-const light=new THREE.PointLight(0x00ffff,2,40);
+scene.add(new THREE.AmbientLight(0xffffff,.4));
+const light=new THREE.PointLight(0x00ffff,2,50);
 light.position.set(0,0,10);
 scene.add(light);
 
-/* FLOATING BACKGROUND ICONS */
-const bgIcons = [
-  '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>',
-  '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>'
-];
-
-for (let i = 0; i < 30; i++) {
-  const d = document.createElement('div');
-  d.innerHTML = bgIcons[Math.floor(Math.random() * bgIcons.length)];
-  const s = d.firstChild;
-  s.style.left = Math.random() * 100 + 'vw';
-  s.style.animationDuration = 15 + Math.random() * 25 + 's';
-  s.style.animationDelay = Math.random() * 10 + 's';
-  document.getElementById('bg-icons').appendChild(s);
+/* GRADIENT TEXTURE FOR ORBS */
+function createGradientTexture(){
+  const c=document.createElement('canvas');
+  c.width=256;c.height=256;
+  const g=c.getContext('2d');
+  const grad=g.createLinearGradient(0,0,256,256);
+  grad.addColorStop(0,'#00ffd5');
+  grad.addColorStop(1,'#7f00ff');
+  g.fillStyle=grad;
+  g.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c);
 }
 
-/* TEXT SPRITE HELPER */
+/* TEXT SPRITE */
 function createTextSprite(text){
-  const canvas=document.createElement('canvas');
-  const ctx=canvas.getContext('2d');
-  ctx.font='bold 48px Inter';
-  const w=ctx.measureText(text).width;
-  canvas.width=w+40;
-  canvas.height=80;
-
-  ctx.font='bold 48px Inter';
-  ctx.fillStyle='#00ffd5';
-  ctx.textAlign='center';
-  ctx.textBaseline='middle';
-  ctx.shadowColor='#00ffd5';
-  ctx.shadowBlur=20;
-  ctx.fillText(text,canvas.width/2,canvas.height/2);
-
-  const texture=new THREE.CanvasTexture(canvas);
-  const material=new THREE.SpriteMaterial({map:texture,transparent:true});
-  const sprite=new THREE.Sprite(material);
-  sprite.scale.set(3.5,0.9,1);
-  return sprite;
+  const c=document.createElement('canvas');
+  const g=c.getContext('2d');
+  g.font='bold 40px Inter';
+  const w=g.measureText(text).width;
+  c.width=w+40;c.height=70;
+  g.font='bold 40px Inter';
+  g.fillStyle='#ffffff';
+  g.textAlign='center';
+  g.textBaseline='middle';
+  g.shadowColor='#00ffd5';
+  g.shadowBlur=20;
+  g.fillText(text,c.width/2,c.height/2);
+  const t=new THREE.CanvasTexture(c);
+  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true}));
+  s.scale.set(3.8,1,1);
+  return s;
 }
 
 const projects=[
@@ -286,36 +303,38 @@ const projects=[
 ];
 
 const orbs=[];
+const gradTex=createGradientTexture();
+
 projects.forEach((p,i)=>{
-  const geo=new THREE.CircleGeometry(1.8,64);
   const mat=new THREE.MeshStandardMaterial({
-    color:0x081020,
+    map:gradTex,
     emissive:0x00ffff,
-    emissiveIntensity:.8
+    emissiveIntensity:.6
   });
-  const orb=new THREE.Mesh(geo,mat);
+  const orb=new THREE.Mesh(new THREE.CircleGeometry(1.9,64),mat);
   orb.position.x=(i-1.5)*5.5;
 
   const label=createTextSprite(p.name.toUpperCase());
-  label.position.y=2.6;
+  label.position.y=2.8;
   orb.add(label);
 
   orb.userData=p;
   scene.add(orb);
   orbs.push(orb);
 });
+
 camera.position.z=10;
 
 const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
-renderer.domElement.addEventListener('click',()=>{
-  ray.setFromCamera(mouse,camera);
-  const h=ray.intersectObjects(orbs);
-  if(h.length) window.open(h[0].object.userData.link,'_blank');
-});
 renderer.domElement.addEventListener('mousemove',e=>{
   const r=renderer.domElement.getBoundingClientRect();
   mouse.x=((e.clientX-r.left)/r.width)*2-1;
   mouse.y=-((e.clientY-r.top)/r.height)*2+1;
+});
+renderer.domElement.addEventListener('click',()=>{
+  ray.setFromCamera(mouse,camera);
+  const h=ray.intersectObjects(orbs);
+  if(h.length)window.open(h[0].object.userData.link,'_blank');
 });
 
 function animate(){
